@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 #
 from machinelearning.tools.mlTools import overview
 
@@ -102,3 +103,15 @@ emptyAreaIndexList = emptyArea.index
 print(emptyAreaIndexList)
 print(data.iloc[emptyAreaIndexList,:])
 print(data.总分.median())
+
+print('查找总分异常值')
+print(data.总分.values)
+plt.scatter(list(data.总分.values),np.ones(data.shape[0]))
+# plt.show()
+q1 = data.总分.quantile(q=0.25)
+q3 = data.总分.quantile(q=0.75)
+iqr = q3 -q1
+k=1.5
+minLimit = q1- k * iqr
+maxLimit = q3+ k * iqr
+print(data[(data.总分>maxLimit )|( data.总分 < minLimit)])
