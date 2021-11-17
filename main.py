@@ -8,8 +8,7 @@
 
 # from case.basic import EvalTest
 # import case.basic.PyTime
-# import case.basic.NewAxis
-# import case.numpy.WFGNumpy
+
 #######################################################
 #爬虫案例
 #中国天气网
