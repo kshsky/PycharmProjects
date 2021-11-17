@@ -1,0 +1,12 @@
+// graphviz000
+digraph digraphName {
+	A [label="Dot A" color=red]
+	B [label="Dot B"]
+	C [label="Dot C"]
+	D [label="diamond D" color=orange]
+	A -> B
+	A -> C
+	A -> B
+	B -> C [label="B-C"]
+	A -> D [label=diamond color=orange]
+}
