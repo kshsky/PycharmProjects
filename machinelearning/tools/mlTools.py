@@ -111,3 +111,53 @@ def display_version():
     print('xgboost.version : ',xgboost.__version__)
 
 display_version()
+
+#数据查看tool
+def overview(data):
+
+    print('\n======================= data overview =======================\n')
+
+    print('\n重复行数 : ',data.duplicated().sum(axis=0))
+    print('重复记录为：')
+    print(data[data.duplicated()])
+
+    print('\n数据总体缺失情况 : ')
+    print('总记录数 : ',data.shape[0])
+    print('\n各列没有缺失的样本数量：')
+    print(data.notnull().sum())
+    print('\n各列缺失的样本数量：')
+    print(data.isnull().sum())
+    print('\n各列缺失比例')
+    print(data.isnull().mean())
+
+    print('\n缺失行\n')
+    print(data.loc[data.isnull().sum(axis=1)>0,:])
+    print('\n缺失列\n')
+    print(data.loc[:,data.isnull().sum(axis=0)>0])
+    print('\n缺失区域【缺失行+缺失列】\n')
+    print(data.loc[data.isnull().sum(axis=1) > 0, data.isnull().sum(axis=0) > 0])
+
+    print('\n\n')
+    print('\n所在列及缺失的行索引号\n')
+    for i in data.columns:
+        print(i,' : ',list(np.where(pd.isna(data[i]))[0]))
+    print('\n\n')
+
+def basicOperate(data):
+    print('\n\n')
+    print('\n删除重复行\n')
+    data.drop_duplicates(inplace=True)
+    print('\n\n')
+    print('\n\n')
+    print('\n\n')
+
+def dropRank(data,thresh):
+    threshold = thresh
+    print('显示空值个数大于 {} 的行,这些行，予以删除'.format(data.shape[1] - threshold))
+    print(data.loc[data.isnull().sum(axis=1) > data.shape[1] - threshold])
+    print('=======================================')
+    print(data.loc[data.isnull().sum(axis=1) == data.shape[1] - threshold])
+    print('=======================================')
+    print('显示非空个数大于等于 {} 的行，这些行，予以保留'.format(threshold))
+    print(data.dropna(thresh=threshold))
+    data.dropna(thresh=threshold,inplace=True)
