@@ -4,6 +4,7 @@ import matplotlib
 import metrics
 import sklearn
 import xgboost
+from sklearn import metrics
 
 
 '''
@@ -24,6 +25,12 @@ metrics.auc(fpr, tpr)
 metrics.mean_absolute_error(y_true, y_pred, sample_weight=none, multioutput='uniform_average')
 metrics.mean_squared_error(y_true, y_pred, sample_weight=None, multioutput='uniform_average')
 metrics.r2_score(y_true, y_pred, sample_weight=None, multioutput='uniform_average')
+
+
+用于多分类，只有两个属性可以选择 ‘macro’ 和 ‘weighted’ 
+' macro '：计算每个标签的指标，并计算它们的未加权平均值。不考虑样本类别是否平衡。
+' weighted '：计算每个标签的指标，并找到它们的平均值，对(每个标签的真实实例的数量)进行加权。
+'micro':整体计算TP、FN、FP，然后根据公式计算得分。
 '''
 
 def classificationModel(y_true,y_pred):
@@ -33,11 +40,12 @@ def classificationModel(y_true,y_pred):
     #准确率
     accuracyScore = metrics.accuracy_score(y_true, y_pred)
     #精确率
-    precisionScore = metrics.precision_score(y_true, y_pred)
+    precisionScore = metrics.precision_score(y_true, y_pred,average=None)
     #召回率
-    recallScore = metrics.recall_score(y_true, y_pred)
-    #f1
-    f1Score = metrics.f1_score(y_true, y_pred)
+    recallScore = metrics.recall_score(y_true, y_pred,average=None)
+    #f1 只对2分类问题有效
+    # None, 'micro', 'macro', 'weighted'
+    f1Score = metrics.f1_score(y_true, y_pred,average=None)
 
     nameValueDict.update({})
     #pr曲线
@@ -53,7 +61,7 @@ def classificationModel(y_true,y_pred):
     nameValueDict.update({'accuracyScore':accuracyScore})
     nameValueDict.update({'precisionScore':precisionScore})
     nameValueDict.update({'recallScore':recallScore})
-    nameValueDict.update({'f1Score':f1Score})
+    # nameValueDict.update({'f1Score':f1Score})
     nameValueDict.update({'auc':metrics.auc(fpr, tpr)})
     nameValueDict.update({'accuracyScore':accuracyScore})
     nameValueDict.update({'aucArea':aucArea})

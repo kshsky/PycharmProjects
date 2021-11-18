@@ -3,25 +3,17 @@ import matplotlib.pyplot as plt
 
 from sklearn import metrics
 
-y_true = [0, 1, 2, 0, 1, 2]
-y_pred = [0, 2, 1, 0, 0, 1]
+from mlxtend.preprocessing import TransactionEncoder
 
-matrix = metrics.confusion_matrix(y_true,y_pred)
-print(matrix)
-print(metrics.accuracy_score(y_true,y_pred))
-# Target is multiclass but average='binary'. Please choose another average setting, one of [None, 'micro', 'macro', 'weighted'].
+dataset = [['Milk', 'Onion', 'Nutmeg', 'Kidney Beans', 'Eggs', 'Yogurt'],
+['Dill', 'Onion', 'Nutmeg', 'Kidney Beans', 'Eggs', 'Yogurt'],
+['Milk', 'Apple', 'Kidney Beans', 'Eggs'],
+['Milk', 'Unicorn', 'Corn', 'Kidney Beans', 'Yogurt'],
+['Corn', 'Onion', 'Onion', 'Kidney Beans', 'Ice cream', 'Eggs']]
 
-print(metrics.precision_score(y_true,y_pred,average='macro'))
-print(metrics.precision_score(y_true,y_pred,average='micro'))
-print(metrics.precision_score(y_true,y_pred,average='weighted'))
-print(metrics.precision_score(y_true,y_pred,average=None))
-
-print(metrics.recall_score(y_true,y_pred,average=None))
-print(metrics.roc_auc_score(y_true,y_pred,average='macro'))
-print(metrics.precision_recall_curve(y_true,y_pred))
-fpr,tpr,thresholds = metrics.roc_curve(y_true,y_pred)
-
-print(fpr)
-print(tpr)
-print(thresholds)
-print(metrics.auc(fpr,tpr))
+import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+te = TransactionEncoder()
+te_ary = te.fit(dataset).transform(dataset)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+print(df)
