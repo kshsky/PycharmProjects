@@ -36,14 +36,15 @@ mse = mean_squared_error(y_test, y_pred)
 print(mse)
 
 
-params = {"objective": "reg:gblinear", "booster":"gblinear"}
 import pandas as pd
 import xgboost as xgb
 from sklearn.metrics import mean_squared_error
 # 将数据转化为DMatrix格式
 train_xgb = xgb.DMatrix(X_train, y_train)
-params = {"objective": "reg:linear", "booster":"gblinear"}
+params = {"objective": "reg:squarederror", "booster":"gblinear"}
+num_round=30
 model = xgb.train(dtrain=train_xgb,params=params)
 y_pred = model.predict(xgb.DMatrix(X_test))
+# print(y_pred)
 mse = mean_squared_error(y_test,y_pred)
 print(mse)

@@ -5,8 +5,6 @@ booster为gbtree表示采用XGBoost中的树模型。
 参数gamma表示节点分裂时损失函数减小的最小值，此处为1.0，表示损失函数至少下降1.0该节点才会进行分裂。
 参数min_child_weight表示叶子节点最小样本权重和，若节点分裂导致叶子节点的样本权重和小于该值，则节点不进行分裂。
 参数max_depth表示决策树分裂的最大深度。
-
-
 '''
 xgb_train = xgb.DMatrix("dataFile/agaricus.txt.train")
 xgb_test = xgb.DMatrix("dataFile/agaricus.txt.test")
@@ -27,10 +25,10 @@ watchlist = [(xgb_train, 'train'), (xgb_test, 'test')]
 model = xgb.train(params, xgb_train, num_round, watchlist)
 
 # 模型训练完成之后，可通过save_model方法将模型保存成模型文件，以供后续预测使用
-model.save_model("dataFile/0002.model")
+model.save_model("dataFile/agaricus.model")
 # 加载模型进行预测
 bst = xgb.Booster()
-bst.load_model("dataFile/0002.model")
+bst.load_model("dataFile/agaricus.model")
 pred = bst.predict(xgb_test)
 
 print(pred)

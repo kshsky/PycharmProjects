@@ -6,7 +6,6 @@ from sklearn import metrics
 data = pd.read_excel('dataFile/Concrete_Data.xls')
 print(data.columns)
 data.rename(columns={"Concrete compressive strength(MPa, megapascals) ":'label'}, inplace=True)
-# data.rename(columns={"Concrete compressive strength(MPa, megapascals)":'label'}, inplace=True)
 
 print(data.head())
 # 生成一个随机数并选择小于0.8的数据
@@ -21,6 +20,7 @@ xgb_test = xgb.DMatrix(test.iloc[:, :7], label=test.label)
 
 #模型训练
 params = {
+    # "objective": "reg:linear", 废止
     "objective": "reg:squarederror",
     "booster": "gbtree",
     "eta": 0.1,
