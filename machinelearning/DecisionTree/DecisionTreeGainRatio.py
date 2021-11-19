@@ -171,7 +171,10 @@ while True:
 
 display(parentChildDict)
 
-dot = Digraph(name='DecisionTreeGainRatio', format="pdf",node_attr={'style':'filled',"fontname":'Microsoft YaHei'},edge_attr={"fontname":'Microsoft YaHei'})
+dot = Digraph(name='DecisionTreeGainRatio',
+              format="pdf",
+              node_attr={'style':'filled',"fontname":'Microsoft YaHei'},
+              edge_attr={"fontname":'Microsoft YaHei'})
 
 for i in parentChildDict.keys():
     print()

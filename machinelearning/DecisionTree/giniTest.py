@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from decimal import *
 
 columns = ['有固定资产(X1)', '家庭类型(X2)', '月收入(X3)', 'VIP用户']
 data = np.array([
@@ -18,7 +19,7 @@ df = pd.DataFrame(data=data, columns=columns)
 
 
 # 离散型
-def giniC(x, y):
+def giniClassify(y, x):
     x_id, x_ct = np.unique(x, return_counts=True)
     p_x = [ct / sum(ct) for ct in [np.unique(x, return_counts=True)[1]]]
     gini = [1 - np.sum(p ** 2) for p in
@@ -29,10 +30,10 @@ def giniC(x, y):
 
 x = df['有固定资产(X1)']
 y=df['VIP用户']
-print(round(giniC(x, y), 4))
+print(round(giniClassify(y, x), 4))
 # 0.24
 x = df['家庭类型(X2)']
-print(round(giniC(x, y), 4))
+print(round(giniClassify(y, x), 4))
 # 0.3
 
 
@@ -41,7 +42,7 @@ x = df['月收入(X3)'].astype(float)
 y = df.VIP用户
 
 
-def giniS(y, x):
+def giniRegression(y, x):
     # 将离散数据转成float
     x.astype(float)
     # 对离散数据排序
@@ -70,7 +71,9 @@ def giniS(y, x):
                      [np.unique(y[xi == i], return_counts=True)[1] for i in x_id]]
 
         # 计算每个分界点的gini
-        split_point_gini.append(round(np.sum(w_i * np.array(gini_x_id)), 4))
+        # split_point_gini.append(round(np.sum(w_i * np.array(gini_x_id)), 4))
+        gini = Decimal(str(np.sum(w_i * np.array(gini_x_id)))).quantize(Decimal('0.0000'),ROUND_HALF_UP)
+        split_point_gini.append(gini)
 
     # 封装成字典
     split_point_gini_dict = dict(zip(split_point_list, split_point_gini))
@@ -78,5 +81,66 @@ def giniS(y, x):
 
     return split_point_gini_dict
 
-giniS(y, x)
+giniClassify(y, x)
 
+
+
+# ID	年龄	有工作	有自己的房子	信贷情况	类别
+# [1,'青年','否','否','一般','否'],
+# [2,'青年','否','否','好','否']
+# [3,'青年','是','否','好','是'],
+# [4,'青年','是','是','一般','是'],
+# [5,'青年','否','否','一般','否'],
+# [6,'中年','否','否','一般','否'],
+# [7,'中年','否','否','好','否'],
+# [8,'中年','是','是','好','是'],
+# [9,'中年','否','是','非常好','是'],
+# [10,'中年','否','是','非常好','是'],
+# [11,'老年','否','是','非常好','是'],
+# [12,'老年','否','是','好','是'],
+# [13,'老年','是','否','好','是'],
+# [14,'老年','是','否','非常好','是'],
+# [15,'老年','否','否','一般','否']
+
+
+
+
+columns = ['ID','年龄','有工作','有自己的房子','信贷情况','类别']
+data = np.array([['1', '青年', '否', '否', '一般', '否'],
+                 ['2', '青年', '否', '否', '好', '否'],
+                 ['3', '青年', '是', '否', '好', '是'],
+                 ['4', '青年', '是', '是', '一般', '是'],
+                 ['5', '青年', '否', '否', '一般', '否'],
+                 ['6', '中年', '否', '否', '一般', '否'],
+                 ['7', '中年', '否', '否', '好', '否'],
+                 ['8', '中年', '是', '是', '好', '是'],
+                 ['9', '中年', '否', '是', '非常好', '是'],
+                 ['10', '中年', '否', '是', '非常好', '是'],
+                 ['11', '老年', '否', '是', '非常好', '是'],
+                 ['12', '老年', '否', '是', '好', '是'],
+                 ['13', '老年', '是', '否', '好', '是'],
+                 ['14', '老年', '是', '否', '非常好', '是'],
+                 ['15', '老年', '否', '否', '一般', '否']
+                 ])
+
+data = pd.DataFrame(data = data,columns = columns)
+
+for i in columns[1:-1]:
+    print(i,giniClassify(data.iloc[:,-1],data[i]))
+
+u = data.iloc[:,-1]
+v = data.iloc[:,1]
+vid,vct = np.unique(v,return_counts=True)
+# [1 - np.sum(p ** 2) for p in
+#             [ct / sum(ct) for ct in [np.unique(y[x == i], return_counts=True)[1] for i in x_id]]]
+
+print([1- np.sum([p **2 for p in ct/np.sum(ct)]) for ct in [np.unique(u[v == i],return_counts = True)[1] for i in vid]])
+# print(u)
+# print(v)
+print(np.unique(v,return_counts=True))
+print([np.unique(u[v == i],return_counts = True)[1] for i in vid])
+# print(data)
+v = data.iloc[:,2]
+vid,vct = np.unique(v,return_counts=True)
+print(np.unique(v,return_counts=True))
+print([np.unique(u[v == i],return_counts = True)[1] for i in vid])
