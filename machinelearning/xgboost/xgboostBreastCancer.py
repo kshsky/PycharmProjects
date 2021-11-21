@@ -9,7 +9,7 @@ cancer = datasets.load_breast_cancer()
 X = cancer.data
 y = cancer.target
 # 划分训练集、测试集
-X_train, X_test, y_train, y_test = train_test_split(X, y ,test_size = 1/5.,random_state = 8)
+X_train, X_test, y_train, y_test = train_test_split(X, y ,test_size = 1/5,random_state = 8)
 '''
 class sklearn.linear_model.LogisticRegression(penalty='l2', dual=False,tol=0.0001, C=1.0, 
 fit_intercept=True, intercept_scaling=1,class_weight=None,random_state=None, solver='liblinear', 
@@ -31,10 +31,9 @@ print(metrics.accuracy_score(y_test, y_pred))
 from sklearn import tree
 # 决策树
 clf = tree.DecisionTreeClassifier(max_depth=4)
-
 # 训练模型
 clf.fit(X_train,y_train)
-  # 预测
+# 预测
 y_pred = clf.predict(X_test)
 print(metrics.classification_report(y_test, y_pred, target_names=['Benign','Malignant']))
 print(metrics.accuracy_score(y_test, y_pred))
@@ -60,8 +59,8 @@ from graphviz import Source
 path = 'dataFile/breastCancerTree.dot'
 # s = Source.from_file(path,format='png')
 #默认format='pdf'
-# s = Source.from_file(path)
-# s.view()
+s = Source.from_file(path)
+s.view()
 #=======================================================
 xgb_train = xgb.DMatrix(X_train, label=y_train)
 xgb_test = xgb.DMatrix(X_test, label=y_test)

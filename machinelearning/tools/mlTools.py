@@ -6,9 +6,24 @@ import sklearn
 import xgboost
 from sklearn import metrics
 from decimal import *
+import graphviz
 
 
 '''
+新細明體：PMingLiU
+細明體：MingLiU
+標楷體：DFKai-SB
+黑体：SimHei
+宋体：SimSun
+新宋体：NSimSun
+仿宋：FangSong
+楷体：KaiTi
+仿宋_GB2312：FangSong_GB2312
+楷体_GB2312：KaiTi_GB2312
+微軟正黑體：Microsoft JhengHei
+微软雅黑体：Microsoft YaHei
+————————————————
+
 metrics.confusion_matrix(y_true, y_pred, labels=None, sample_weight=None)
 metrics.accuracy_score(y_true,y_pred)
 metrics.average_precision_score(y_true, y_score, average='macro', sample_weight=None)
@@ -118,6 +133,7 @@ def display_version():
     print('matplotlib.version : ',matplotlib.__version__)
     print('sklearn.version : ',sklearn.__version__)
     print('xgboost.version : ',xgboost.__version__)
+    print('graphviz.version',graphviz.__version__)
 
 display_version()
 

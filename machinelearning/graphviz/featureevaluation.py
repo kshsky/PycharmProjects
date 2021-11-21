@@ -4,7 +4,7 @@ from graphviz import Digraph
 
 # 仿宋_GB2312：FangSong_GB2312 楷体_GB2312：KaiTi_GB2312
 # plaintext
-dot =  Digraph  (name='featureEvaluation',format = 'pdf',node_attr={'fontname':'SimSun','shape':'ellipse','style':'filled'})
+dot =  Digraph  (name='featureEvaluation',format = 'png',node_attr={'fontname':'SimSun','shape':'ellipse','style':'filled'})
 dot.node(name='a',label='特征评价')
 dot.node(name='b',label='特征初选')
 dot.node(name='c',label='影响评价')
@@ -14,4 +14,4 @@ dot.edge('a','b')
 dot.edge('a','c')
 dot.edge('a','d')
 
-dot.render('dataFile/feature',view=True)
+dot.render('dataFile/feature.dot',view=True)

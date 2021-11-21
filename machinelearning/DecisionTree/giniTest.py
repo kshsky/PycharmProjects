@@ -1,6 +1,31 @@
 import numpy as np
 import pandas as pd
 from decimal import *
+def entU(u):
+
+    return [np.sum([p * np.log2(1 / p) for p in ct / np.sum(ct)]) for ct in [np.unique(u, return_counts=True)[1]]][0]
+
+#条件熵
+def uConditionV(u,v):
+
+    entu = [np.sum([p * np.log2(1 / p) for p in ct / np.sum(ct)]) for ct in [np.unique(u, return_counts=True)[1]]][0]
+    entv = [np.sum([p * np.log2(1 / p) for p in ct / np.sum(ct)]) for ct in [np.unique(v, return_counts=True)[1]]][0]
+
+    # v 解释变量
+    vid, vct = np.unique(v, return_counts=True)
+
+    # 条件信息
+    vidEntropy = [np.sum([p * np.log2(1 / p) for p in ct / np.sum(ct)]) for ct in [np.unique(u[v == i], return_counts=True)[1] for i in vid]]
+
+    #条件熵
+    entUconditonV= np.sum(np.array(vidEntropy) * (vct / np.sum(vct)))
+
+    return entUconditonV
+
+#信息增益
+def gainuv(u,v):
+
+    return entU(u) - uConditionV(u,v)
 
 columns = ['有固定资产(X1)', '家庭类型(X2)', '月收入(X3)', 'VIP用户']
 data = np.array([
@@ -124,9 +149,13 @@ data = np.array([['1', '青年', '否', '否', '一般', '否'],
                  ])
 
 data = pd.DataFrame(data = data,columns = columns)
-
+print('gini')
 for i in columns[1:-1]:
     print(i,giniClassify(data.iloc[:,-1],data[i]))
+
+print('gianuv')
+for i in columns[1:-1]:
+    print(i,gainuv(data.iloc[:,-1],data[i]))
 
 u = data.iloc[:,-1]
 v = data.iloc[:,1]
@@ -144,3 +173,43 @@ v = data.iloc[:,2]
 vid,vct = np.unique(v,return_counts=True)
 print(np.unique(v,return_counts=True))
 print([np.unique(u[v == i],return_counts = True)[1] for i in vid])
+print('==============西瓜=================')
+columns = ['色泽', '根蒂', '敲声', '纹理', '脐部', '触感', '好瓜']
+data = np.array([
+    ['青绿', '蜷缩', '浊响', '清晰', '凹陷', '硬滑', '是'],
+    ['乌黑', '蜷缩', '沉闷', '清晰', '凹陷', '硬滑', '是'],
+    ['乌黑', '蜷缩', '浊响', '清晰', '凹陷', '硬滑', '是'],
+    ['青绿', '蜷缩', '沉闷', '清晰', '凹陷', '硬滑', '是'],
+    ['浅白', '蜷缩', '浊响', '清晰', '凹陷', '硬滑', '是'],
+    ['青绿', '稍蜷', '浊响', '清晰', '稍凹', '软粘', '是'],
+    ['乌黑', '稍蜷', '浊响', '稍糊', '稍凹', '软粘', '是'],
+    ['乌黑', '稍蜷', '浊响', '清晰', '稍凹', '硬滑', '是'],
+    ['乌黑', '稍蜷', '沉闷', '稍糊', '稍凹', '硬滑', '否'],
+    ['青绿', '硬挺', '清脆', '清晰', '平坦', '软粘', '否'],
+    ['浅白', '硬挺', '清脆', '模糊', '平坦', '硬滑', '否'],
+    ['浅白', '蜷缩', '浊响', '模糊', '平坦', '软粘', '否'],
+    ['青绿', '稍蜷', '浊响', '稍糊', '凹陷', '硬滑', '否'],
+    ['浅白', '稍蜷', '沉闷', '稍糊', '凹陷', '硬滑', '否'],
+    ['乌黑', '稍蜷', '浊响', '清晰', '稍凹', '软粘', '否'],
+    ['浅白', '蜷缩', '浊响', '模糊', '平坦', '硬滑', '否'],
+    ['青绿', '蜷缩', '沉闷', '稍糊', '稍凹', '硬滑', '否']
+])
+
+df = pd.DataFrame(data=data, columns=columns)
+df.to_excel('dataFile/xigua2.0.xlsx')
+u = df.iloc[:,-1]
+v = df.iloc[:,0]
+vid,vct = np.unique(v,return_counts=True)
+# print([1- np.sum([p **2 for p in ct/np.sum(ct)]) for ct in [np.unique(u[v == i],return_counts = True)[1] for i in vid]])
+print(vid)
+# print([np.unique(u[v != i],return_counts = True) for i in vid])
+print([np.unique(v[v != i],return_counts = True)[1] for i in vid])
+print([np.unique(v[v == i],return_counts = True)[1] for i in vid])
+print([np.unique(u[v == i],return_counts = True)[1] for i in vid])
+# print([1 - np.sum([p**2 for p in ct/np.sum(ct)]) for ct in [np.unique(v[v == i],return_counts = True)[1] for i in vid]])
+print([[p for p in ct/np.sum(ct)] for ct in [np.unique(v[v != i],return_counts = True)[1] for i in vid]])
+
+def gini_index(u,v):
+    vid,vct = np.unique(v,return_counts=True)
+    # p = [vid/len(v),len(v)-]
+    uid,uct = [np.unique(u[i==vid],return_counts=True) for i in vid]

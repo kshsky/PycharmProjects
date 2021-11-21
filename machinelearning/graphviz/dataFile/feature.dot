@@ -1,0 +1,10 @@
+digraph featureEvaluation {
+	node [fontname=SimSun shape=ellipse style=filled]
+	a [label="特征评价"]
+	b [label="特征初选"]
+	c [label="影响评价"]
+	d [label="模型法"]
+	a -> b
+	a -> c
+	a -> d
+}

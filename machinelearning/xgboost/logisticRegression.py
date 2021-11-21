@@ -36,7 +36,8 @@ train_xgb = xgb.DMatrix(X_train, y_train)
 num_round = 50
 params = {"objective": "reg:logistic", "booster":"gblinear"}
 
-model = xgb.train(dtrain=train_xgb,params=params)
+model = xgb.train(dtrain=train_xgb,params=params,early_stopping_rounds=1)
+print(model.best_score,model.best_iteation)
 y_pred = model.predict(xgb.DMatrix(X_test))
 print(y_pred)
 #将概率大于0.5的预测分类标记为1，否则为0
