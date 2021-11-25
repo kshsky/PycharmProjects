@@ -59,8 +59,8 @@ from graphviz import Source
 path = 'dataFile/breastCancerTree.dot'
 # s = Source.from_file(path,format='png')
 #默认format='pdf'
-s = Source.from_file(path)
-s.view()
+# s = Source.from_file(path)
+# s.view()
 #=======================================================
 xgb_train = xgb.DMatrix(X_train, label=y_train)
 xgb_test = xgb.DMatrix(X_test, label=y_test)
@@ -78,8 +78,11 @@ params = {
 num_round = 100
 watchlist = [(xgb_train, 'train'), (xgb_test, 'test')]
 
-model = xgb.train(params, xgb_train, num_round, watchlist)
-
+model = xgb.train(params, xgb_train, num_round, watchlist,early_stopping_rounds=10)
+print('提前停止。。。')
+print('model.best_score：',model.best_score)
+print('model.best_ntree_limit：',model.best_ntree_limit)
+print('model.best_iteration：',model.best_iteration)
 # 存储为二进制文件
 xgb_test.save_binary('dataFile/binary_breast_cancer_test.buffer')
 
@@ -95,4 +98,21 @@ y_pred = resultClass.astype(int)
 print(metrics.accuracy_score(y_test,y_pred))
 print(metrics.classification_report(y_test,y_pred))
 
+print('=================评价特征对单个样本的影响==========================')
 
+# 以SHAP方法为例，其调用方法非常简单，只需在执行predict函数时将参数pred_contribs设置为True即可
+pred_contribs = model.predict(xgb_test, pred_contribs=True)
+print(pred_contribs)
+# XGBoost还支持SHAP方法对任意两两交叉特征贡献值的评估，只需将参数pred_interactions置为True即可
+pred_interactions = model.predict(xgb_test, pred_interactions=True)
+# XGBoost还支持另外一种单样本归因方法Sabbas。相比SHAP方法，Sabbas实现简单、容易理解，但其弊端也是不可忽视的，即容易产生不一致的问题
+approx_contribs = model.predict(xgb_test, pred_contribs=True, approx_contribs=True)
+print(approx_contribs)
+
+
+print('==================生成二叉树=========================')
+import matplotlib.pyplot as plt
+# def plot_tree(booster, fmap='', num_trees=0, rankdir=None, ax=None, **kwargs):
+model = xgb.train(params, xgb_train, num_round, watchlist,early_stopping_rounds=10)
+xgb.plot_tree(model, num_trees=1)
+plt.show()
