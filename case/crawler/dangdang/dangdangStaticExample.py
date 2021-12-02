@@ -142,9 +142,21 @@ print('出版社：', unit.find_all(class_='t1')[1].find(name='a').string.strip(
 # 出版时间
 print('出版时间：', unit.find_all(class_='t1')[2].string.strip())
 # 价格
+'''
+
+      <div class="price_m" id="original-price">
+       <span class="yen">
+        ¥
+       </span>
+       39.50
+      </div>
+
+'''
 print('价格', unit.find(id='original-price').get_text(strip=True))
 print('价格', unit.find(id='original-price').get_text(strip=True)[1:])
 print('价格', unit.find(id='original-price').contents[2].strip())
+print('价格', unit.find(id='original-price').string)
+print('价格', unit.find(id='original-price').text.strip())
 
 book_detail = soup2.find(name='ul', class_='key clearfix')
 

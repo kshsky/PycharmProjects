@@ -103,3 +103,15 @@ for i in range(len(name)):
 
 df = pd.DataFrame(data = data ,columns=columns)
 print(df)
+import pymysql
+conn = pymysql.connect(host='192.168.10.108',
+					   user='root',
+					   password='123456',
+					   db='dangdang',
+					   charset='utf-8',
+					   cursorclass=pymysql.cursors.DictCursor)
+
+cursor = conn.cursor()
+#创建表，如果不存在就创建
+print('============#先删除表，后创建表================')
+cursor.execute('drop table emp')
