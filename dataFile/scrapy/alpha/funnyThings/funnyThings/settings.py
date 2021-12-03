@@ -1,4 +1,4 @@
-# Scrapy settings for firstBlood project
+# Scrapy settings for funnyThings project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,16 +7,13 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'firstBlood'
+BOT_NAME = 'funnyThings'
 
-SPIDER_MODULES = ['firstBlood.spiders']
-NEWSPIDER_MODULE = 'firstBlood.spiders'
+SPIDER_MODULES = ['funnyThings.spiders']
+NEWSPIDER_MODULE = 'funnyThings.spiders'
 
 
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'firstBlood (+http://www.yourdomain.com)'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64;x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
-# Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 LOG_LEVEL = 'ERROR'
 
@@ -46,13 +43,13 @@ LOG_LEVEL = 'ERROR'
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'firstBlood.middlewares.FirstbloodSpiderMiddleware': 543,
+#    'funnyThings.middlewares.FunnythingsSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'firstBlood.middlewares.FirstbloodDownloaderMiddleware': 543,
+#    'funnyThings.middlewares.FunnythingsDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -64,7 +61,7 @@ LOG_LEVEL = 'ERROR'
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'firstBlood.pipelines.FirstbloodPipeline': 300,
+#    'funnyThings.pipelines.FunnythingsPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
