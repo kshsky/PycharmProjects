@@ -1,4 +1,4 @@
-# Scrapy settings for secondBlood project
+# Scrapy settings for statinMasterProj project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,23 +7,25 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'secondBlood'
+BOT_NAME = 'statinMasterProj'
 
-SPIDER_MODULES = ['secondBlood.spiders']
-NEWSPIDER_MODULE = 'secondBlood.spiders'
+SPIDER_MODULES = ['statinMasterProj.spiders']
+NEWSPIDER_MODULE = 'statinMasterProj.spiders'
+
+
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
+#USER_AGENT = 'statinMasterProj (+http://www.yourdomain.com)'
 
 ROBOTSTXT_OBEY = False
-LOG_LEVEL='ERROR'
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64;x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+DOWNLOAD_DELAY = 1
+COOKIES_ENABLED = False
+LOG_LEVEL = 'ERROR'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
 
-#300表示优先级，数值越小，优先级越高
-ITEM_PIPELINES = {
-   'secondBlood.pipelines.SecondbloodPipeline': 300,
-   'secondBlood.pipelines.mysqlPipeline': 302,
-}
+IMAGES_STORE='./imgs'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
-FEED_EXPORT_ENCODING='UTF8'
+
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
@@ -47,13 +49,13 @@ FEED_EXPORT_ENCODING='UTF8'
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'secondBlood.middlewares.SecondbloodSpiderMiddleware': 543,
+#    'statinMasterProj.middlewares.StatinmasterprojSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'secondBlood.middlewares.SecondbloodDownloaderMiddleware': 543,
+#    'statinMasterProj.middlewares.StatinmasterprojDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -64,7 +66,10 @@ FEED_EXPORT_ENCODING='UTF8'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
+ITEM_PIPELINES = {
+   'statinMasterProj.pipelines.StatinmasterprojPipeline': 300,
+   'statinMasterProj.pipelines.ImagesPipeline': 200,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

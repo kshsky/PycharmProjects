@@ -59,7 +59,8 @@ class SkyeyeSpider(scrapy.Spider):
                 address = ' '
             else:
                 address = addressOri[0].get()
-            itemStr = name + ',' + img + ',' + normal + ',' + tag + ',' + legalPerson + ',' + capital + ',' + createTime + ',' + telephone + ',' + email + ',' + address + '\n'
+            itemStr = name + ',' + img + ',' + normal + ',' + tag + ',' + legalPerson + ',' + capital + ',' \
+                      + createTime + ',' + telephone + ',' + email + ',' + address + '\n'
             print(itemStr)
             item= SecondbloodItem()
 
