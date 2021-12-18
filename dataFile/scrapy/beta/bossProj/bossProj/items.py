@@ -9,4 +9,13 @@ import scrapy
 class BossprojItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+
+    # columnList = ['job', 'jobTag', 'jobArea', 'salary', 'requirement', 'company', 'companyTag', 'jobDesc']
+    job = scrapy.Field()
+    jobTag = scrapy.Field()
+    jobArea = scrapy.Field()
+    salary = scrapy.Field()
+    requirement = scrapy.Field()
+    company = scrapy.Field()
+    companyTag = scrapy.Field()
+    jobDesc = scrapy.Field()

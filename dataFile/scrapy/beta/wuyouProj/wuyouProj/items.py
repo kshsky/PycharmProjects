@@ -9,4 +9,13 @@ import scrapy
 class WuyouprojItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    job = scrapy.Field()
+    releaseDate = scrapy.Field()
+    salary = scrapy.Field()
+
+    info = scrapy.Field()
+    company = scrapy.Field()
+    companyType = scrapy.Field()
+    #
+    # columnlist = ['job', 'release', 'salary', 'jobArea', 'experience', 'edu', 'num', 'company', 'companyType', ]
+

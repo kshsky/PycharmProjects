@@ -5,14 +5,6 @@ localtime = time.asctime(time.localtime(time.time()))
 
 
 print(localtime)#Fri Jun  4 15:08:25 2021
-print(time.localtime().tm_year)#2021
-print(time.localtime().tm_mon)#6
-print(time.localtime().tm_mday)#4
-print(time.localtime().tm_yday)#155
-print(time.localtime().tm_wday)#4
-print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime()))#2021-06-04 15:08:25
-print(time.strftime('%Y-%m-%d %H:%M:%S'))#2021-06-04 15:08:25
-print(time.strftime('%Y-%m-%d %X'))#2021-06-04 15:08:25
 
 print(datetime.now())#2021-06-04 15:15:09.334441
 dt_now = datetime.now()
@@ -23,15 +15,6 @@ print(dt_now.timestamp())#1622790909.334441
 #把时间格式化成字符串
 print(dt_now.strftime('%Y-%m-%d %H:%M:%S'))#2021-06-04 15:15:09
 
-#把字符串变成时间
-datetime1 = datetime.strptime('2021-06-04 15:15:09','%Y-%m-%d %H:%M:%S')
-
-datetime2 = datetime1 + timedelta(seconds=33)
-datetime3 = datetime1 + timedelta(weeks=1,days=1,hours=1,minutes=1,seconds=1)
-print(datetime1)
-print(datetime2)
-print(datetime3)
-
 import calendar
 
 #isleap 是否是闰年
@@ -39,6 +22,11 @@ print(calendar.isleap(time.localtime().tm_year))
 print(calendar.firstweekday())
 #calendar.monthrange 天数范围
 print(calendar.monthrange(time.localtime().tm_year,time.localtime().tm_mon))#(1, 30)
+print(time.localtime().tm_year)
+print(time.localtime().tm_mon)
+print(time.localtime().tm_mday)
+print(time.localtime().tm_yday)
+print(time.localtime().tm_wday)
 #alendar.month(2021,6) 打印日历
 print(calendar.month(time.localtime().tm_year,time.localtime().tm_mon))
 #      June 2021
@@ -48,3 +36,14 @@ print(calendar.month(time.localtime().tm_year,time.localtime().tm_mon))
 # 14 15 16 17 18 19 20
 # 21 22 23 24 25 26 27
 # 28 29 30
+
+day_list = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31']
+print(len(day_list))
+print(calendar.mdays)
+today = datetime.today()
+monthRange = calendar.monthrange(today.year,today.month)[1]
+print(today)
+
+import random
+
+print(random.randint(3,9))

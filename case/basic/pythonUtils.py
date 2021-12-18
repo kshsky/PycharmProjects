@@ -21,3 +21,10 @@ print(a._round_by_decimal(1.236,'.00'))
 print(a._round_by_decimal(-1.234,'.00'))
 print(a._round_by_decimal(-1.235,'.00'))
 print(a._round_by_decimal(-1.236,'.00'))
+
+
+seasons={'spring':'春','summer':'夏','autumn':'秋','winter':'冬'}
+print(seasons)
+for i in seasons:
+    print(i)
+

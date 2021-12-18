@@ -14,6 +14,7 @@ class WangyiSpider(scrapy.Spider):
     need_element =['domestic','world','air','war']
 
     flag = 0
+    status = 0
     def __init__(self):
         self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\dataFile\scrapy\chromedriver.exe')
     def parse(self, response):
@@ -32,6 +33,7 @@ class WangyiSpider(scrapy.Spider):
                     urlItemDict.update({sectionUrl:item})
                     # print(sectionName,sectionUrl)
         print(urlItemDict)
+        self.flag=1
         for i in self.section_url_list:
             yield scrapy.Request(i,callback=self.parse_section,meta={'item':urlItemDict[i]})
 
@@ -51,7 +53,7 @@ class WangyiSpider(scrapy.Spider):
                 infoDetailUrl = i.xpath('./a/@href').get()
                 print(infoTital,infoDetailUrl)
         if self.flag==1:
-            with open('./txt2/' + sectionName + '-2.txt', 'w', encoding='utf8') as fp:
+            with open('./txt/' + sectionName + '-2.txt', 'w', encoding='utf8') as fp:
                 fp.write(response.text)
             print('---------- 2 --------------',sectionName)
             # web页面上的数据是在class=“ndi_main”的div里，而实际返回的html页面，数据在<div class="hidden">里，

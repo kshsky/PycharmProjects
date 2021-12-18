@@ -14,10 +14,9 @@ model.fit(x.reshape(-1,1),y)
 b=model.intercept_
 w=model.coef_
 
-print('b=',b)
-print('w=',w[0])
-
-
+print('LinearRegression 计算结果：')
+print('截距b的值：{}'.format(model.intercept_))
+print('权重系数w的值： {}'.format(model.coef_))
 
 # ==============================================
 plt.figure(figsize=(9, 6))
@@ -35,6 +34,6 @@ for i, j in zip(xx, yy):
 
 plt.xlim(np.min(x) - 5, np.max(x) + 5)
 plt.ylim(np.min(y) - 10, np.max(y) + 20)
-# plt.grid(True)
-# plt.show()
+plt.grid(True)
+plt.show()
 

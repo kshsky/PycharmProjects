@@ -12,8 +12,8 @@ class WangyiprojPipeline:
 
 
     def open_spider(self,spider):
-        shutil.rmtree('txt2')
-        os.mkdir('txt2')
+        shutil.rmtree('txt')
+        os.mkdir('txt')
         print('\n directory created successfully ... \n')
     def process_item(self, item, spider):
 

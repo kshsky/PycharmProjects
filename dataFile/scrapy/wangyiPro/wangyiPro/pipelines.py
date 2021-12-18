@@ -6,12 +6,20 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import shutil
+import os
 
 class WangyiproPipeline:
+
     def open_spider(self,spider):
 
-        print('----- pipeline spider open ----------------------')
+        if os.path.exists('txt'):
+            shutil.rmtree('txt')
+        os.mkdir('txt')
+
+        print(' ctarted ok ')
+
+
 
     def process_item(self, item, spider):
         print('----pipeline  item ------------------')
