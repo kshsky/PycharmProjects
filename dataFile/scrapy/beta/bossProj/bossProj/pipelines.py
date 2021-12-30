@@ -90,7 +90,7 @@ class BossprojPipeline:
     # columnList = ['job', 'jobTag', 'jobArea', 'salary', 'requirement', 'company', 'companyTag', 'jobDesc']
 
     def open_spider(self, spider):
-        print('>>> open gorge spider pipeline ...')
+        print('>>> open spider pipeline ...')
         self.conn = pymysql.Connect(host='192.168.10.108',
                                     port=3306,
                                     user='root',

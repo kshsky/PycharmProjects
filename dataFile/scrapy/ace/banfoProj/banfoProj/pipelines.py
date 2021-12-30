@@ -1,7 +1,15 @@
-import pdfkit
-from scrapy.utils.project import get_project_settings
-import time
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+
+
+# useful for handling different item types with a single interface
 from datetime import datetime
+
+import pymysql
+from itemadapter import ItemAdapter
+
 import re
 # =============================================
 
@@ -88,13 +96,12 @@ def validateTitle(title):
     result = re.sub(rstr2, "-", rep_en)  # 替换为下划线
 
     return result
-import pymysql
-class XiaoprojPipeline:
+class BanfoprojPipeline:
     conn = None
     cursor = None
 
     def open_spider(self, spider):
-        print('>>> open baixiaosheng spider pipeline ...')
+        print('>>> open banfo spider pipeline ...')
         self.conn = pymysql.Connect(host='192.168.10.108',
                                     port=3306,
                                     user='root',
@@ -119,51 +126,17 @@ class XiaoprojPipeline:
 
     def process_item(self, item, spider):
 
-        columnData = []
-        for i in spider.columnList:
-            if i == 'title':
-                columnData.append(item[i].replace('"','\\"'))
+        tableName = spider.tableName
+        columnList = spider.columnList
+
+        columnDataList = []
+        for i in columnList:
+            if i =='title':
+                columnDataList.append(item[i].replace('"','\\"'))
             else:
-                columnData.append(item[i])
-        sql = buildInsertWholeRecordSQL(spider.tableName, columnData)
-        print(sql)
+                columnDataList.append(item[i])
+        sql = buildInsertWholeRecordSQL(tableName,columnDataList)
         self.cursor.execute(sql)
         self.conn.commit()
 
         return item
-
-    def close_spider(self, spider):
-        print(' close baixiaosheng ... ')
-        self.cursor.close()
-        self.conn.close()
-        print('----------------')
-    # def process_item(self, item, spider):
-    #
-    #     title = item['title']
-    #     name = validateTitle(title)
-    #     content = str(item['id'])
-    #     settings = get_project_settings()
-    #     directory = settings.get('FILES_STORE')
-    #     body = '<h1>{}</h1>{}'.format(title[11:],content)
-    #
-    #     #option 是匹配 html标签的内容的
-    #     options = {
-    #         '--title':name, #展示 h1 标签的内容
-    #         'encoding': "UTF-8",
-    #     }
-    #     id = item['contentUrl'][-4:]
-    #     item['id'] = id
-    #     file_name = directory + name +'_'+id+ '.pdf'
-    #     print(datetime.now())
-    #     print('正在生成文件 ---> ',file_name)
-    #     config = pdfkit.configuration(wkhtmltopdf=r'D:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
-    #     pdfkit.from_string(body, file_name, options=options, configuration=config)
-    #     print(datetime.now())
-    #
-    #     item['title'] =title[11:]
-    #     return item
-    #
-    # def close_spider(self,spider):
-    #     print(' close chrome ... ')
-    #     spider.driver.quit()
-    #     print('----------------')

@@ -2,12 +2,18 @@ import random
 import time
 from scrapy.http import HtmlResponse
 from selenium import webdriver
+from selenium.webdriver import DesiredCapabilities
+
 
 class BossprojDownloaderMiddleware:
 
     def __init__(self):
         print("初始化浏览器")
-        self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\dataFile\scrapy\chromedriver.exe')
+        # self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\dataFile\scrapy\chromedriver.exe')
+        desired_capabilities = DesiredCapabilities.CHROME
+        desired_capabilities["pageLoadStrategy"] = "normal"
+        self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\dataFile\scrapy\chromedriver.exe',
+                                       desired_capabilities = desired_capabilities)
 
     def process_request(self, request, spider):
 
@@ -16,9 +22,7 @@ class BossprojDownloaderMiddleware:
     def process_response(self, request, response, spider):
 
         self.driver.get(request.url)
-
-        time.sleep(random.randint(5,10))
-
+        # time.sleep(random.randint(5,10))
         source = self.driver.page_source
         #获取页面的源码
         response = HtmlResponse(url=self.driver.current_url,body=source,request=request,encoding='utf-8')
