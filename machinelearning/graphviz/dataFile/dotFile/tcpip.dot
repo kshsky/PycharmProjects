@@ -1,0 +1,72 @@
+digraph rankdot {
+	compound=true
+	margin="0,0"
+	ranksep = .75
+	nodesep = 1
+	pad = .5
+	//splines = ortho
+
+	node [shape=Mrecord, charset = "UTF-8" fontname="Microsoft YaHei", fontsize=14]
+	edge [charset = "UTF-8" fontname="Microsoft YaHei", fontsize=11, arrowhead = normal]
+
+	CLOSED -> LISTEN [style = dashed, label = "应用：被动打开\n发送：<无>", weight = 100];
+
+	"TCP/IP State Transition" [shape = "plaintext", fontsize = 16]
+
+	{
+		rank = same
+		SYN_RCVD SYN_SENT
+		point_1 [shape = point, width = 0]
+
+		SYN_SENT -> point_1 [style = dotted, label = "应用关闭或者超时"]
+		// SYN_SENT -> SYN_RCVD 这个一行代码和上一行冲突了，syn_sent 会在syn_rcvd右边
+		SYN_RCVD -> SYN_SENT [style = dotted, dir = back, headlabel = "接收：SYN\n发送：SYN,ACK\n同时打开"]
+	}
+
+	LISTEN -> SYN_RCVD [style = dashed, headlabel = "接收：SYN\n发送：SYN,ACK"]
+	SYN_RCVD -> LISTEN [style = dotted, headlabel = "接收：RST"]
+	CLOSED:es -> SYN_SENT [style = blod, label = "应用：主动打开\n发送：SYN"]
+
+	{
+		rank = same
+		ESTABLISHED CLOSE_WAIT
+
+		ESTABLISHED -> CLOSE_WAIT [style = dashed, label = "接收：SYN,ACK\n发送：ACK"]
+	}
+
+	SYN_RCVD -> ESTABLISHED [style = dashed, label = "接收：ACK\n发送：<无>", weight = 9]
+	SYN_SENT -> ESTABLISHED  [style = blod, label = "接收：SYN,ACK\n发送：ACK", weight = 10]
+
+	{
+		rank = same
+
+		FIN_WAIT_1
+		CLOSING
+		LAST_ACK
+		point_2 [shape = point, width = 0]
+
+		FIN_WAIT_1 -> CLOSING [style = dotted, label = "接收：FIN\n发送：ACK"]
+		LAST_ACK -> point_2 [style = dashed, label = "接收：ACK\n发送：<无>"]
+	}
+
+	CLOSE_WAIT -> LAST_ACK [style = dashed, label = "应用：关闭\n发送：FIN", weight = 10]
+
+	{
+		rank = same
+		FIN_WAIT_2  TIME_WAIT
+
+		point_3 [shape = point, width = 0]
+		TIME_WAIT -> point_3 [style = blod, label = "2MSL超时"]
+	}
+
+	ESTABLISHED -> FIN_WAIT_1 [style = blod, label = "应用：关闭\n发送：FIN"]
+	FIN_WAIT_1 -> FIN_WAIT_2 [style = blod, headlabel = "接收：ACK\n发送：<无>", weight = 15]
+	FIN_WAIT_2 -> TIME_WAIT [style = blod, label = "接收：FIN\n发送：ACK", weight = 10]
+
+	CLOSING -> TIME_WAIT [style = dotted, label = "接收：ACK\n发送：<无>", weight = 15]
+	FIN_WAIT_1 -> TIME_WAIT [style = dotted, label = "接收：ACK\n发送：<无>"]
+
+	point_3 -> point_2 [arrowhead = none, style = dotted, weight = 10]
+	point_2 -> point_1 [arrowhead = none, style = dotted]
+	point_1 -> CLOSED [style = dotted]
+}

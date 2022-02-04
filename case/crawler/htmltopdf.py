@@ -88,7 +88,6 @@ def local_html_dict_path_dict(html_path,pdf_path):
 '''
     从数据库中查询文章的url，并调取 persist_html，将文章以html的格式存储在磁盘中
     返回：html_pdf_path_dict,key是html的绝对路径，key是pdf的绝对路径
-    
 '''
 def querySQL(root_html,root_pdf):
 

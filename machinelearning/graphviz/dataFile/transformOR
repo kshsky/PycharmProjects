@@ -1,34 +1,32 @@
 digraph G {
-	start [label=start shape=Mdiamond]
-	end [label=end shape=Mdiamond]
-	// process1
+	// output
 	{
 		graph [color=green style=filled]
 		node [color=red style=filled]
-		a0 [label=a0 shape=square]
-		a1 [label=a1 shape=box]
-		a2 [label=a2 fillcolor=yellow shape=diamond]
-		a3 [label=a3 shape=rect]
-		a0 -> a1
-		a1 -> a2
-		a2 -> a3
-		a3 -> a0
+		a_0 [label=a_0 shape=square]
+		a_1 [label=a_1 shape=box]
+		a_1 [label=a_1 shape=box]
+		a_cdot1 [label=a_cdot1 fillcolor=yellow shape=diamond]
+		a_i [label=a_i shape=rect]
+		a_cdot2 [label=a_cdot2 shape=rect]
+		a_m [label=a_m shape=rect]
 	}
-	// process1
+	// input
 	{
 		node [color=green style=filled]
-		B [label=b0]
-		C [label=b1 shape=box]
-		D [label="b2|b22|4" shape=record]
-		E [label=b3]
-		B -> C
-		C -> D
-		D -> E
+		b_0 [label=b_0]
+		b_1 [label=b_1]
+		b_2 [label=b_2]
+		b_cdot1 [label=b_cdot1]
+		b_j [label=b_j]
+		b_cdot2 [label=b_cdot2]
+		b_n [label=b_n]
 	}
-	start -> a0
-	start -> B
-	a1 -> E
-	D -> a3
-	a3 -> end
-	E -> end
+	a_i -> b_0
+	a_i -> b_1
+	a_i -> b_2
+	a_i -> b_cdot1
+	a_i -> b_j
+	a_i -> b_cdot2
+	a_i -> b_n
 }

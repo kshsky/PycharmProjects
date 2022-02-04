@@ -8,14 +8,6 @@ class XiaoprojDownloaderMiddleware:
     def __init__(self):
 
         print("初始化浏览器")
-        # - desired_capabilities - A dictionary of capabilities to request when starting the browser session. Required parameter.
-        # driver.get(url)
-        # 方法要根据desired_capabilities的pageLoadStrategy字段的值，确定执行结束的时机：
-        # （1）NONE：html下载完成，不等待解析完成即返回；
-        # （2）EAGER：要等待整个dom树加载完成，即DOMContentLoaded这个事件完成，仅对html的内容进行下载解析；
-        # （3）NORMAL: 等待整个界面加载完成（指对html和子资源的下载与解析, 如JS文件，图片等，不包括ajax）.
-
-        # get直接返回，不再等待界面加载完成
         desired_capabilities = DesiredCapabilities.CHROME
         desired_capabilities["pageLoadStrategy"] = "normal"
         self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\dataFile\scrapy\chromedriver.exe',

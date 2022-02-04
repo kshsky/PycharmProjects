@@ -29,12 +29,16 @@ def persist_pdf(html_pdf_file_dict):
 
         #option 是匹配 html标签的内容的
         options = {
-            '--title':'[title]', #展示 h1、h2、h3等各级标题作为大纲
-            '--page-size':'Letter',
+            # --disable - smart - shrinking         不使用智能收缩策略
+            # --enable - smart - shrinking          使用智能收缩策略(这是默认设置)
+            '--disable-smart-shrinking':True,
+            '--title': '[title]',  # 展示 h1、h2、h3等各级标题作为大纲
+            '--page-size': 'Letter',
             '--encoding': "UTF-8",
+            '--minimum-font-size':20,
             # '--header-left':pub,#页眉左边,
             # '--header-right':'我是右边页眉',#页眉右边，添加页码,
-            '--footer-right':'[page]/[toPage]',#页脚右边，添加页码,
+            '--footer-right': '[page]/[toPage]',  # 页脚右边，添加页码,
             # '--header-line':'--header-line', #添在页眉下方显示一条直线分隔正文
             # '--header-spacing':'5' #页眉与正文之间的距离(默认为零)
         }
@@ -73,3 +77,13 @@ def local_html_dict_path_dict(html_path,pdf_path):
 
     return html_pdf_path_dict
 
+root_html = r'F:\PDF\python_html_to_pdf\xiao-html'
+root_pdf= r'F:\PDF\python_html_to_pdf\xiao-pdf'
+# html_pdf_path_dict = querySQL(root_html,root_pdf)
+html_pdf_path_dict = local_html_dict_path_dict(root_html,root_pdf)
+for i in html_pdf_path_dict:
+    print(i,html_pdf_path_dict[i])
+
+print('共需完成文件{}个'.format(len(html_pdf_path_dict)))
+persist_pdf(html_pdf_path_dict)
+print('--------------finished normally--------------------')

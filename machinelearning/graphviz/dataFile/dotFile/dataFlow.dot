@@ -1,0 +1,40 @@
+digraph DataAccessLayer {
+	node[fontname="FangSong"];
+	edge[fontname="FangSong"];
+
+	entity[shape="box",label="业务逻辑应用"];
+	process1[shape="oval",label="接口方法"];
+	process2[shape="oval",label="模型解析"];
+	process3[shape="oval",label="RDMS接口"];
+	process4[shape="oval",label="NoSQL接口"];
+	process5[shape="oval",label="FS接口"];
+	process6[shape="oval",label="其他接口"];
+	process7[shape="oval",label="原始数据合并"];
+	process8[shape="oval",label="数据模型转化"];
+	process9[shape="oval",label="访问数据处理"];
+
+	persist1[shape="underline",label="普通数据库"];
+	persist2[shape="underline",label="分布式数据库"];
+	persist3[shape="underline",label="NoSQL数据库"];
+	persist4[shape="underline",label="文件系统"];
+	persist5[shape="underline",label="其他存储系统"];
+
+	entity->process1[label="访问对象"];
+	process1->process2[label="数据访问对象"];
+	process2->process3[label="RDMS访问对象"];
+	process2->process4[label="NoSQL访问对象"];
+	process2->process5[label="FS访问对象"];
+	process2->process6[label="其他接口"];
+
+	process3->persist1[label="普通数据库访问语句"];
+	process3->persist2[label="分布式数据库访问语句"];
+	process4->persist3[label="NoSQL访问语句"];
+	process5->persist4[label="文件系统查询语句"];
+	process6->persist5[label="其他存储系统语句"];
+
+	{persist1,persist2,persist3,persist4,persist5}->process7[label="原始数据对象"];
+	process7->process8[label="合并统一数据"];
+	process8->process9[label="数据模型对象"];
+	end[shape="none", style="invis"];
+	process9->end[label="返回数据模型对象"];
+}

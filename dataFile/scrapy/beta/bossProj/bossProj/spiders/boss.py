@@ -13,11 +13,15 @@ def checkNone(target):
 class BossSpider(scrapy.Spider):
     name = 'boss'
     # allowed_domains = ['www.xx.com']
-    start_urls = ['https://www.zhipin.com/c101010100-p100509/?query=%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98&page=1']
-    model_url='https://www.zhipin.com/c101010100-p100509/?query=%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98&page={}'
+    #数据挖掘
+    # start_urls = ['https://www.zhipin.com/c101010100-p100509/?query=%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98&page=1']
+    #数据分析
+    start_urls = ['https://www.zhipin.com/c101010100-p100509/?query=%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90&page=1']
+    # model_url='https://www.zhipin.com/c101010100-p100509/?query=%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98&page={}'
+    model_url='https://www.zhipin.com/c101010100-p100509/?query=%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90&page={}'
     page = 1
     day = datetime.now().date()
-    tableName = 'boss_' + str(day).replace('-', '_')
+    tableName = 'boss_data_analysis' + str(day).replace('-', '_')
     columnList = ['job', 'jobTag', 'jobArea', 'salary', 'requirement', 'company', 'companyTag', 'jobDesc']
     def parse(self, response):
 

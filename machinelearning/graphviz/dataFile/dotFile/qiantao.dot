@@ -1,0 +1,25 @@
+digraph D {
+        node [shape =record, charset = "UTF-8" fontname = "Microsoft Yahei", fontsize = 14]
+
+        china [label = " 中国 | { 浙江 | { 杭州 | { 西湖区 | { 西湖 | { 苏堤 | 断桥 } | 西溪湿地} | 余杭区 } | 宁波}}"]
+
+
+
+        ngx_pool_t [
+                color = "cornflowerblue"
+                label  = "ngx_pool_t | {
+                        {d | {
+                                *last |
+                                *end |
+                                *next |
+                                failed
+                        }}|
+                        *max |
+                        *current |
+                        *chain |
+                        *cleanup |
+                        *log
+                        }"
+
+        ]
+}

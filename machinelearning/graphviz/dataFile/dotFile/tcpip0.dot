@@ -1,0 +1,50 @@
+digraph {
+	compound=true
+	fontsize=10
+	margin="0,0"
+	ranksep = .75
+	nodesep = .65
+
+	node [shape=Mrecord,charset = "UTF-8" fontname="Microsoft YaHei", fontsize=12, penwidth=0.5]
+	edge [charset = "UTF-8" fontname="Microsoft YaHei", fontsize=10, arrowhead=normal]
+
+
+	"TCP/IP State Transition" [shape = "plaintext", fontsize = 16]
+
+	// now start server state transition
+	"CLOSED" -> "LISTEN" [style = blod, label = "应用：被动打开\n发送：<无>"];
+	"LISTEN" -> "SENT_REVD" [style = blod, label = "接收：SYN\n发送：SYN,ACK"]
+	"SENT_REVD" -> "ESTABLISHED" [style = blod, label = "接收：ACK\n发送：<无>", weight = 20]
+	"ESTABLISHED" -> "CLOSE_WAIT" [style = blod, label = "接收：FIN\n发送：ACK", weight = 20]
+
+	subgraph cluster_passive_close {
+		style = dotted
+		margin = 10
+
+		passive_close [shape = plaintext, label = "被动关闭", fontsize = 14]
+
+		"CLOSE_WAIT" -> "LAST_ACK" [style = blod, label = "应用：关闭\n发送：FIN", weight = 10]
+	}
+	"LAST_ACK" -> "CLOSED" [style = blod, label = "接收：ACK\n发送：<无>"]
+
+	// now start client state transition
+	"CLOSED" -> "SYN_SENT" [style = dashed, label = "应用：主动打开\n发送：SYN"];
+	"SYN_SENT" -> "ESTABLISHED" [style = dashed, label = "接收：SYN,ACK\n发送：ACK", weight = 25]
+	"SYN_SENT" -> "SENT_REVD" [style = dotted, label = "接收：SYN\n发送：SYN,ACK\n同时打开"]
+	"ESTABLISHED" -> "FIN_WAIT_1" [style = dashed, label = "应用：关闭\n发送：FIN", weight = 20]
+
+	subgraph cluster_active_close {
+		style = dotted
+		margin = 10
+
+		active_open [shape = plaintext, label = "主动关闭", fontsize = 14]
+
+		"FIN_WAIT_1" -> "FIN_WAIT_2" [style = dashed, label = "接收：ACK\n发送：<无>"]
+		"FIN_WAIT_2" -> "TIME_WAIT" [style = dashed, label = "接收：FIN\n发送：ACK"]
+		"FIN_WAIT_1" -> "CLOSING" [style = dotted, label = "接收：ACK\n发送：<无>"]
+		"FIN_WAIT_1" -> "TIME_WAIT" [style = dotted, label = "接收：SYN,ACK\n发送：ACK"]
+		"CLOSING" -> "TIME_WAIT" [style = dotted]
+	}
+
+	"TIME_WAIT" -> "CLOSED" [style = dashed, label = "2MSL超时"]
+}

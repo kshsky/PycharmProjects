@@ -84,7 +84,7 @@ class FilmprojPipeline:
 
 #########################################################################################
 
-    tableName = 'ss'
+    tableName = 'tj91'
     columnNameList = ['name','url','section','detailName','actor','designation','language','type','detailUrl']
 # {'actor': '波多野结衣',
 #  'designation': '番号：HZGD-018',

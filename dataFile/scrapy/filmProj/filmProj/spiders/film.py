@@ -2,11 +2,14 @@ import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
-from filmProj.items import FilmItem
+from ..items import FilmItem
 class FilmSpider(CrawlSpider):
+
+
     name = 'film'
     # allowed_domains = ['www.xxx.com']
-    start_urls = ['https://www.xuan131.top/search.asp?page=3&searchword=%C9%B4%C9%B4%D4%AD%B0%D9%BA%CF&searchtype=-1']
+    # start_urls = ['https://www.xuan131.top/search.asp?page=3&searchword=%C9%B4%C9%B4%D4%AD%B0%D9%BA%CF&searchtype=-1']
+    start_urls = ['https://www.xuan201.top/search.asp?page=1&searchword=91&searchtype=-1']
 
     rules = (
         Rule(LinkExtractor(allow=r'\?page=\d+&searchword='), callback='parse_item', follow=True),

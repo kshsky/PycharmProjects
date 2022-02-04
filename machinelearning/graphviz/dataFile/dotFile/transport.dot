@@ -1,0 +1,36 @@
+digraph rankdot {
+	compound=true
+	margin="0,0"
+	ranksep = .75
+	nodesep = 1
+	pad = .5
+	rankdir = LR
+	splines=line
+
+
+	node [shape=record, charset = "UTF-8" fontname="Microsoft YaHei", fontsize=14]
+	edge [style = dashed, charset = "UTF-8" fontname="Microsoft YaHei", fontsize=11]
+
+
+	a [
+		color = darkviolet,width=1,height=4,
+		label = "<a_1> a1 |<cdot1> ... |<a_i> ai |<cdot2> ... |<a_m>am"
+	]
+
+	b [
+		color = limegreen,width=1,height=4,
+		label = "<b_1>b1 |<cdot1>... |<b_j>bj |<cdot2>... |<b_n>bn"
+	]
+
+	a:a_i-> b:b_1 :w[style=solid,color = sienna,dir=forward]
+	a:a_i -> b:cdot1:w [style=solid,color = cornflowerblue]
+	a:a_i -> b:b_j :w[style=solid,color = tomato,minlen =5]
+	a:a_i -> b:cdot2 :w[style=solid,color = darkviolet]
+	a:a_i -> b:b_n :w[style=solid,color = chocolate]
+
+    a:a_1 -> b:b_j:w [style=dashed,color = sienna]
+	a:cdot1 -> b:b_j:w [style=dashed,color = cornflowerblue]
+	a:cdot2 -> b:b_j:w [style=dashed,color = darkviolet]
+	a:a_m -> b:b_j:w [style=dashed,color = chocolate]
+
+}

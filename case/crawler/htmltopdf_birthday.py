@@ -52,7 +52,6 @@ def persist_pdf(html_pdf_file_dict):
         print('pdf文件生成完成，用时 {} 秒'.format(end -start))
 '''
 程序卡死，从本地的html列表和pdf列表 ，重新生成 html_pdf_path_dict
-
 '''
 def local_html_dict_path_dict(html_path,pdf_path):
     html_pdf_path_dict={}
