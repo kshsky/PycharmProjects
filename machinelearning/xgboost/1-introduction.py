@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 
 #pandas读取默认会将第一行读取为columns列名，取消第一行读取为列名：header=None
-# oriData = pd.read_csv('dataFile/agaricus-lepiota.data',header=None)
+# oriData = pd.read_csv('datafile/agaricus-lepiota.data',header=None)
 #
 # data = oriData.iloc[:,1:]
 # target = oriData.iloc[:,0]
@@ -13,10 +13,10 @@ import pandas as pd
 # print(target)
 
 
-# oriData = xgb.DMatrix('dataFile/agaricus-lepiota.data')
+# oriData = xgb.DMatrix('datafile/agaricus-lepiota.data')
 
-xgb_train = xgb.DMatrix('dataFile/agaricus.txt.train')
-xgb_test = xgb.DMatrix('dataFile/agaricus.txt.test')
+xgb_train = xgb.DMatrix('datafile/agaricus.txt.train')
+xgb_test = xgb.DMatrix('datafile/agaricus.txt.test')
 # 数据读取
 # 定义模型训练参数
 params = {

@@ -3,7 +3,7 @@ import xgboost as xgb
 import numpy as np
 from sklearn import metrics
 
-data = pd.read_excel('dataFile/Concrete_Data.xls')
+data = pd.read_excel('datafile/Concrete_Data.xls')
 print(data.columns)
 data.rename(columns={"Concrete compressive strength(MPa, megapascals) ":'label'}, inplace=True)
 
@@ -32,15 +32,15 @@ num_round = 50
 watchlist = [(xgb_train, 'train'), (xgb_test, 'test')]
 
 model = xgb.train(params, xgb_train, num_round, watchlist)
-model.save_model("dataFile/concrete-model.xgb")
+model.save_model("datafile/concrete-model.xgb")
 
 
 # 加载模型进行预测
 bst = xgb.Booster()
-bst.load_model("dataFile/concrete-model.xgb")
+bst.load_model("datafile/concrete-model.xgb")
 pred = bst.predict(xgb_test)
 
 print(pred)
 # 输出格式化后的模型
-dump_model = bst.dump_model("dataFile/concrete-dump.txt")
+dump_model = bst.dump_model("datafile/concrete-dump.txt")
 print(metrics.mean_squared_error(test.label,pred))

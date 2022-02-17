@@ -6,7 +6,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule, CrawlSpider
 from scrapy_redis.spiders import RedisCrawlSpider
 
-# from dataFile.scrapy.rediscrawlProj.rediscrawlProj.items import RediscrawlprojItem
+# from datafile.scrapy.rediscrawlProj.rediscrawlProj.items import RediscrawlprojItem
 # 普通爬虫父类：scrapy.Spider
 # 自动爬虫父类：CrawlSpider
 # 分布式爬虫父类：RedisCrawlSpider

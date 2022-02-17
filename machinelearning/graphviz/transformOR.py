@@ -39,6 +39,6 @@ grap_g.edge("a_i","b_cdot2")
 grap_g.edge("a_i","b_n")
 
 print(grap_g.source)
-grap_g.render('dataFile/transformOR', view=True)
+grap_g.render('datafile/transformOR', view=True)
 
 

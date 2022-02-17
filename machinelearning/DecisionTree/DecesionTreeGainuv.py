@@ -197,7 +197,7 @@ for i in parentChildDict.keys():
         dot.node(name = parentNode,label=newparentnode)
         dot.edge(parentNode,newchildnode,edge)
 print(dot.source)
-dot.render('dataFile/decisionTreeGainuv.dot', view=True)
+dot.render('datafile/decisionTreeGainuv.dot', view=True)
 # 0 纹理
 # 1纹理+模糊 否
 # 1纹理+清晰 根蒂

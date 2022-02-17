@@ -1,10 +1,10 @@
 #!/usr/bin/python
 #
-# D:\ProgramData\Anaconda3\python.exe D:/program/PycharmProjects/machinelearning/xgboost/mkfold.py dataFile/agaricus.txt 1
+# D:\ProgramData\Anaconda3\python.exe D:/program/PycharmProjects/machinelearning/xgboost/mkfold.py datafile/agaricus.txt 1
 #划分数据集为训练集和测试集，
 # 需要读取文件dataFile/agaricus.txt
-#运行，添加参数  dataFile/agaricus.txt 1
-# dataFile/agaricus.txt 1
+#运行，添加参数  datafile/agaricus.txt 1
+# datafile/agaricus.txt 1
 import sys
 import random
 

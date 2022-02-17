@@ -84,10 +84,10 @@ print('model.best_score：',model.best_score)
 print('model.best_ntree_limit：',model.best_ntree_limit)
 print('model.best_iteration：',model.best_iteration)
 # 存储为二进制文件
-xgb_test.save_binary('dataFile/binary_breast_cancer_test.buffer')
+xgb_test.save_binary('datafile/binary_breast_cancer_test.buffer')
 
 # 重新加载数据
-xgb_test2 = xgb.DMatrix('dataFile/binary_breast_cancer_test.buffer')
+xgb_test2 = xgb.DMatrix('datafile/binary_breast_cancer_test.buffer')
 
 # 用新数据预测
 pred2 = model.predict(xgb_test2)

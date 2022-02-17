@@ -9,7 +9,7 @@ class WangyiSpider(scrapy.Spider):
     start_urls = ['https://news.163.com/']
     url_ele =['domestic','world','air','war']
     section_url_list = []
-    # executable_path = "dataFile/scrapy/chromedriver.exe",
+    # executable_path = "datafile/scrapy/chromedriver.exe",
     #实例化浏览器对象
     flag = 0
     status = 0

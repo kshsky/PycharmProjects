@@ -12,7 +12,7 @@ from machinelearning.tools import mlTools
 # print(iris_data)
 
 
-# data = pd.read_csv('dataFile/iris.csv')
+# data = pd.read_csv('datafile/iris.csv')
 # print(data)
 
 # iris_data = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', sep=",", names=['sepal_length','sepal_width','petal_length','petal_width','class'])

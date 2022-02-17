@@ -49,10 +49,10 @@ print('==============================')
 
 
 #json.dump(dict_data) 把字典转成json格式字符串并存储在文件中
-with open('dataFile\json.txt','w+',encoding='utf8') as f:
+with open('datafile\json.txt','w+',encoding='utf8') as f:
     json.dump(dict_data, f, ensure_ascii=False)
 
 #json.load() 从文件中读取json数据并转化成字典,只支持读取模式,默认是读取模式
-with open('dataFile\json.txt','r',encoding='utf8') as f:
+with open('datafile\json.txt','r',encoding='utf8') as f:
     json_file =json.load(f)
 print(json_file)

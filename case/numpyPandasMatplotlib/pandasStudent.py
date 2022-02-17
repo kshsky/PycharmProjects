@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from machinelearning.tools.mlTools import overview
 
 data = pd.read_table('dataFile/student_grade_empty.txt')
-# data = pd.read_csv('dataFile/titanic.csv')
+# data = pd.read_csv('datafile/titanic.csv')
 print(data)
 print(data.info())
 #

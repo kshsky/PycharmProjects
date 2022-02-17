@@ -34,7 +34,7 @@ mushroom.conf——模型配置文件；
 runexp.sh——运行脚本。
 '''
 #数据预处理，处理成LibSVM格式的文件，直接运行即可
-#产生两个文件：dataFile/featmap.txt，dataFile/agaricus.txt
+#产生两个文件：datafile/featmap.txt，datafile/agaricus.txt
 def loadfmap( fname ):
    fmap = {}
    nmap = {}
@@ -68,7 +68,7 @@ def write_nmap( fo, nmap ):
 
 # start here
 # 解析特征描述文件
-fmap, nmap = loadfmap( 'dataFile/agaricus-lepiota.fmap' )
+fmap, nmap = loadfmap( 'datafile/agaricus-lepiota.fmap' )
 # 保存处理后的新特征索引和名称的映射
 fo = open( 'dataFile/featmap.txt', 'w' )
 write_nmap( fo, nmap )

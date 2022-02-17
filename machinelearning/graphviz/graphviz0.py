@@ -46,4 +46,4 @@ print(dot.source)
 #render(filename=None, directory=None, view=False, cleanup=False)
 # 参数分别为文件名、文件保存路径、是否用默认程序打开渲染效果、是否在渲染后删除源文件
 # 有时需要用绝对地址
-dot.render('dataFile/g0', view=True)
+dot.render('datafile/g0', view=True)

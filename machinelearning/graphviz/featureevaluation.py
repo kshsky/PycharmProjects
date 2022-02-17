@@ -14,4 +14,4 @@ dot.edge('a','b')
 dot.edge('a','c')
 dot.edge('a','d')
 
-dot.render('dataFile/feature.dot',view=True)
+dot.render('datafile/feature.dot',view=True)

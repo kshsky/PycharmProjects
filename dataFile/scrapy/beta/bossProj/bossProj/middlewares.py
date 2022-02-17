@@ -9,7 +9,7 @@ class BossprojDownloaderMiddleware:
 
     def __init__(self):
         print("初始化浏览器")
-        # self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\dataFile\scrapy\chromedriver.exe')
+        # self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\datafile\scrapy\chromedriver.exe')
         desired_capabilities = DesiredCapabilities.CHROME
         desired_capabilities["pageLoadStrategy"] = "normal"
         self.driver = webdriver.Chrome(executable_path='D:\program\PycharmProjects\dataFile\scrapy\chromedriver.exe',
