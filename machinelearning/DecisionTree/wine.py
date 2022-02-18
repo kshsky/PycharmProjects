@@ -11,6 +11,7 @@ criterion="gini"
 # criterion="entropy"
 
 Xtrain, Xtest, Ytrain, Ytest = train_test_split(wine.data,wine.target,test_size=0.2,random_state=8)
+
 #默认gini作为分类依据，CART算法
 clf = tree.DecisionTreeClassifier(criterion=criterion)
 clf= clf.fit(Xtrain, Ytrain)
