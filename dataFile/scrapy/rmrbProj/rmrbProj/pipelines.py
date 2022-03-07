@@ -19,6 +19,7 @@ class RmrbprojPipeline(FilesPipeline):
 
     #文件名命
     def file_path(self, request, response=None, info=None, *, item=item):
+        #scrapy会重建上级目录
         name ='//'+item['day'][:-3] +'//'+item['day']+'_'+item['name']+'.pdf'
         return name
 

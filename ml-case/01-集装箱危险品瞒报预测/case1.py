@@ -55,9 +55,9 @@ def preprocessing1():
     
     # data.CONSIGNEE[data.CONSIGNEE.isnull()] = data.SHIPPER[data.CONSIGNEE.isnull()]
     # 缺失值填充
-    # data = missingData(data)
+    data = missingData(data)
     # 箱图异常值处理
-    # data = outlierDetection(data, "WEIGHT", 'IS_WT_ABNORMAL');
+    data = outlierDetection(data, "WEIGHT", 'IS_WT_ABNORMAL');
     # data = outlierDetection(data, "VOL", 'IS_VOL_ABNORMAL');
     # 联系人合作频率离散化
     data = coopLvlDiscretization(data, 'SH_COOP_QTY', 'SH_COOP_LVL', 5);
@@ -71,14 +71,14 @@ def preprocessing1():
 
 def missingData(data):
     # 缺失值
-    total = data.isnull().sum().sort_values(ascending=False)
-    percent = (data.isnull().sum() / data.isnull().count()).sort_values(ascending=False)
-    missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
-    missing_data.head(20)
+    # total = data.isnull().sum().sort_values(ascending=False)
+    # percent = (data.isnull().sum() / data.isnull().count()).sort_values(ascending=False)
+    # missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
+    # missing_data.head(20)
     # 无效矩阵的数据密集显示
-    msno.matrix(data)
-    # data.CONSIGNEE[data.CONSIGNEE.isnull()] = data.SHIPPER[data.CONSIGNEE.isnull()]
-    return ""  # KNN(k=3).fit_transform(data)
+    # msno.matrix(data)
+    data.CONSIGNEE[data.CONSIGNEE.isnull()] = data.SHIPPER[data.CONSIGNEE.isnull()]
+    return  KNN(k=3).fit_transform(data)
 
 
 def outlierDetection(data, fieldNme, newFieldNme):
@@ -273,7 +273,7 @@ def randomForestClassifier():
     # 数据平衡
 #     print(len(X))
 #     print(Counter(y))
-#     over_samples = SMOTE(random_state=123456, k_neighbors=5, ratio=2.0) 
+    over_samples = SMOTE(random_state=123456, k_neighbors=5, ratio=2.0)
 #     X, y = over_samples.fit_sample(X, y)
 #     print(len(X))
 #     print(Counter(y))

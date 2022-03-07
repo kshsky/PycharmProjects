@@ -16,19 +16,17 @@ class RmrbSpider(CrawlSpider):
     year = time.localtime().tm_year
     month = time.localtime().tm_mon
     day = time.localtime().tm_mday
-    year_month = str(year) + '-' + str(month)
-
-    redis = Redis(host='192.168.10.108',port=6379)
+     # redis = Redis(host='192.168.10.108',port=6379)
 
     #构造起始url列表
-    for i in range(0,day):
-        dayStr =''
-        if i <=8:
-            dayStr +='0'+str(i+1)
-        else:
-            dayStr += str(i+1)
-        url = 'http://paper.people.com.cn/rmrb/html/' + year_month +'/'+dayStr+'/nbs.D110000renmrb_01.htm'
-        start_urls.append(url)
+    yearStr = str(year)
+    dayStr = str(day) if len(str(day))==2 else '0'+str(day)
+    monthStr = str(month) if len(str(month)) == 2 else '0' + str(month)
+    year_month =yearStr+'-'+monthStr
+    url = 'http://paper.people.com.cn/rmrb/html/{}/{}/nbs.D110000renmrb_01.htm'.format(year_month,dayStr)
+    # http://paper.people.com.cn/rmrb/html/2022-03/07/nbs.D110000renmrb_01.htm
+    # http://paper.people.com.cn/rmrb/html/2022-03/01/nbs.D110000renmrb_01.htm
+    start_urls.append(url)
 
 
     rules = (
@@ -48,20 +46,20 @@ class RmrbSpider(CrawlSpider):
         #将爬取过的url放入redis中，使用set集合存储，
         # 放入成功-第一次放入：返回1
         # 放入失败-非第一次放入：返回0
-        flag = self.redis.sadd('rmrb_url',url)
+        # flag = self.redis.sadd('rmrb_url',url)
         idx = tempUrl.index(self.year_month)
         day = tempUrl[idx:idx + 10].replace('/', '-')
-        if flag == 0:
-            print('{} : 数据已经采集过了，无需重复采集'.format(tempUrl[idx:idx + 13]))
-        else:
-            print('{} : 开始采集数据 ... '.format(tempUrl[idx:idx + 13]))
+        # if flag == 0:
+        #     print('{} : 数据已经采集过了，无需重复采集'.format(tempUrl[idx:idx + 13]))
+        # else:
+        #     print('{} : 开始采集数据 ... '.format(tempUrl[idx:idx + 13]))
 
-            item = RmrbprojItem()
-            item['name']=name
-            item['day']=day
-            item['url']= url
+        item = RmrbprojItem()
+        item['name']=name
+        item['day']=day
+        item['url']= url
 
-            yield item
+        yield item
 
 
 
