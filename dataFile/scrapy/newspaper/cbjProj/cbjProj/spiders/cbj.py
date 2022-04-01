@@ -4,7 +4,7 @@ from cbjProj.items import CbjprojItem
 class CbjSpider(scrapy.Spider):
     name = 'cbj'
     # allowed_domains = ['www.cc.com']
-    start_urls = ['http://dianzibao.cb.com.cn/html/2022-03/07/node_1.htm']
+    start_urls = ['http://dianzibao.cb.com.cn/html/2022-02/28/node_1.htm']
     # http://dianzibao.cb.com.cn/images/2022-03/07/13/2445B09C.pdf
     baseUrl = 'http://dianzibao.cb.com.cn/'
 

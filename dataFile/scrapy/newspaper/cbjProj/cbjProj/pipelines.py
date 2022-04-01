@@ -18,7 +18,7 @@ class CbjprojPipeline(FilesPipeline):
         index = url.index('images')+7
         time = url[index:index+10].replace('/','-')
         name = time+'_'+item['name']
-        path = '//CBJ2//{}//{}.pdf'.format(time[:-3],name)
+        path = '//CBJ//{}//{}.pdf'.format(time[:-3],name)
         print(path)
 
         return path

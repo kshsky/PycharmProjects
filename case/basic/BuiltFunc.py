@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 series_str='春夏秋冬'
 series_tuple=('春','夏','秋','冬')
 series_list=['春','夏','秋','冬']
@@ -69,3 +70,15 @@ for index,item in enumerate(series_dict):
 	print(index+1,item,series_dict[item])
 for index,item in enumerate(series_set):
 	print(index+1,item)
+
+
+print('=================')
+d = {'第一集 Part2':1,'第二集 Part3':3,'第一集 Part2':1,'第一集 Part3':3,'第一集 Part1':10,'第四集 Part5':111,'第四集 Part2':13}
+aa= sorted(d.keys())
+print(d)
+
+# a = [' 第四集 Part2 ', ' 第二集 Part6 ', ' 第三集 Part6 ', ' 第三集 Part4 ', ' 第三集 Part5 ', ' 第四集 Part1 ', ' 第三集 Part3 ', ' 第三集 Part1 ', ' 第三集 Part2 ', ' 第二集 Part5', ' 第一集 Part6 ', ' 第二集 Part1 ', ' 第二集 Part2 ', ' 第二集 Part3 ', ' 第十集 Part5 ', ' 第一集 Part5 ', ' 第二集 Part4 ', ' 第十集 Part4 ', ' 第九集 Part4 ', ' 第十集 Part2 ', ' 第九集 Part3 ', ' 第十集 Part3 ', ' 第九集 Part2 ', ' 第九集 Part1 ', ' 第十集 Part1 ', ' 第八集 Part6 ', ' 第八集 Part4 ', ' 第八集 Part5 ', ' 第七集 Part1 ', ' 第八集 Part3 ', ' 第六集 Part4 ', ' 第七集 Part4 ', ' 第八集 Part1 ', ' 第五集 Part4 ', ' 第八集 Part2 ', ' 第六集 Part2 ', ' 第六集 Part3 ', ' 第五集 Part3 ', ' 第五集 Part5 ', ' 第四集Part5 ', ' 第五集 Part1 ', ' 第七集 Part3 ', ' 第四集 Part4 ', ' 第五集 Part2 ', ' 第四集 Part6 ', ' 第一集 Part1 ', ' 第一集 Part3 ', ' 第一集 Part2 ', ' 第一集 Part4 ', ' 第六集 Part1 ', ' 第七集 Part2 ', ' 第四集 Part3 ']
+b=['第一集 Part2', '第二集 Part2', '第一集 Part5', '第一集 Part4', '第一集 Part3', '第一集 Part6', '第一集 Part1', '第二集 Part3', '第二集 Part1', '第二集 Part4', '第二集 Part6', '第三集 Part2', '第三集 Part6', '第二集 Part5', '第三集 Part3', '第三集 Part1', '第三集 Part5', '第七集 Part4', '第六集 Part2', '第六集 Part4', '第七集 Part2', '第七集 Part1', '第十集 Part5', '第十集 Part4', '第九集 Part3', '第九集 Part4', '第十集 Part3', '第八集 Part6', '第十集 Part1', '第十集 Part2', '第八集 Part5', '第九集 Part1', '第九集 Part2', '第八集 Part4', '第七集 Part3', '第五集 Part5', '第六集 Part3', '第八集 Part2', '第八集 Part3', '第五集 Part1', '第五集 Part4', '第八集 Part1', '第五集 Part3', '第四集 Part3', '第四集 Part4', '第五集 Part2', '第四集 Part6', '第六集 Part1', '第三集 Part4', '第四集 Part2', '第四集 Part5', '第四集 Part1']
+
+print(sorted(b))
+
