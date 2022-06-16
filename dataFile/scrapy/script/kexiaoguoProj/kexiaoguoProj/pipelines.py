@@ -18,8 +18,6 @@ class KexiaoguoprojPipeline:
     def close_spider(self, spider):
 
         options = {
-            # --disable - smart - shrinking         不使用智能收缩策略
-            # --enable - smart - shrinking          使用智能收缩策略(这是默认设置)
             '--disable-smart-shrinking': True,
             '--title': '[title]',  # 展示 h1、h2、h3等各级标题作为大纲
             '--page-size': 'Letter',

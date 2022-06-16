@@ -35,6 +35,7 @@ grap_g.edge("D","a3")
 grap_g.edge("a3","end")
 grap_g.edge("E","end")
 print(grap_g.source)
+
 grap_g.render('datafile/g1', view=True)
 
 

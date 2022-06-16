@@ -23,7 +23,7 @@ class BossSpider(scrapy.Spider):
     # model_url='https://www.zhipin.com/c101010100/?query=%E7%88%AC%E8%99%AB&page={}'
     page = 1
     day = datetime.now().date()
-    tableName = 'boss_crawl' + str(day).replace('-', '_')
+    tableName = 'boss_datamining_' + str(day).replace('-', '_')
     columnList = ['job', 'jobTag', 'jobArea', 'salary', 'requirement', 'company', 'companyTag', 'jobDesc']
     def parse(self, response):
 

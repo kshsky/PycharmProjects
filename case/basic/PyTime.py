@@ -47,3 +47,21 @@ print(today)
 import random
 
 print(random.randint(3,9))
+
+
+import datetime
+begin = datetime.date(2019,1,1)
+end = datetime.date(2020,6,6)
+d = begin
+delta = datetime.timedelta(days=1)
+while d <= end:
+    print(d.strftime("%Y-%m-%d"))
+    d += delta
+
+start = datetime.date(2021,1,1)
+end = datetime.date(2021,1,2)
+delta = datetime.timedelta(days=1)
+d = start
+while d <= end:
+    print(d.strftime('%Y%m/%d'))
+    d +=delta
