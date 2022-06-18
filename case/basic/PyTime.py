@@ -58,10 +58,18 @@ while d <= end:
     print(d.strftime("%Y-%m-%d"))
     d += delta
 
-start = datetime.date(2021,1,1)
-end = datetime.date(2021,1,2)
+
+print('-------------')
+start = datetime.date(2022,6,1)
+end = datetime.date(2022,7,2)
 delta = datetime.timedelta(days=1)
 d = start
 while d <= end:
-    print(d.strftime('%Y%m/%d'))
+    # print(d.strftime('%Y%m/%d'))
+    # d.weekday() 返回0-6
+    # d.isoweekday() 返回1-7
+    print(d.weekday(), '-', d.isoweekday(),'-',d.strftime('%Y/%m/%d'))
     d +=delta
+
+
+print(datetime.datetime.now())

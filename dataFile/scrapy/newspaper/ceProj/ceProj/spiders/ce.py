@@ -8,8 +8,8 @@ class CeSpider(scrapy.Spider):
     start_urls = []
     base_url = 'http://paper.ce.cn/pc/layout/{}/node_01.html'
     pdf_url_prefix='http://paper.ce.cn/pc/'
-    start = datetime.date(2021,1,1)
-    end = datetime.date(2022,1,1)
+    start = datetime.date(2022,3,14)
+    end = datetime.date(2022,6,16)
     delta = datetime.timedelta(days=1)
     d = start
     while d <= end:
