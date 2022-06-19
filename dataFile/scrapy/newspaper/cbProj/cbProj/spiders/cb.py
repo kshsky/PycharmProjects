@@ -9,10 +9,10 @@ class CbSpider(scrapy.Spider):
     start_urls = []
     issue_url='http://dianzibao.cb.com.cn/html/{}/node_1.htm'
     base_url='http://dianzibao.cb.com.cn/'
-    year=2017
-    start =datetime.date(year,1,1)
+    year=2006
+    start =datetime.date(year,11,21)
     # start =datetime.date(2006,1,2)
-    end =datetime.date(year,12,31)
+    end =datetime.date(year,11,30)
 
     delta = datetime.timedelta(days=1)
     d=start

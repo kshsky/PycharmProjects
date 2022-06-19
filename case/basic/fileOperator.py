@@ -10,6 +10,7 @@ files = os.listdir(os.getcwd())
 for i in files:
     # print(i)
     pass
+#移动文件
 def movefile(input,output):
     for root,dirs,file in os.walk(input):
         if len(file)!=0:
@@ -35,18 +36,6 @@ def emptyDir(path):
         if os.path.isfile(i):
             os.remove(i)
     print('>>> empty dir OK ... ')
-
-
-# movefile(input,output)
-# movefile(output,topath)
-# emptyDir(input)
-# emptyDir(output)
-
-
-calibre=r'C:\Users\87754\AppData\Local\calibre-cache\ev2\f'
-# emptyDir(calibre)
-
-
 
 def changeFileName(path):
     os.chdir(path)
@@ -85,9 +74,6 @@ def changeFileName2(path):
             continue
         # os.rename(i,new)
 
-path = r'F:\PDF\newspaper\中国县域经济报\2022'
-# changeFileName2(path)
-
 def checkName(path):
     os.chdir(path)
     file = os.listdir(path)
@@ -107,5 +93,45 @@ def checkName(path):
             continue
     print(issuelist)
 
+def deleteParticularFile(path):
+    import os
+    os.chdir(path)
+    for root,dir,file in os.walk(path):
+        if len(file)>0:
+            for i in file:
+                if i.find('jpg')!=-1 or i.find('JPG')!=-1 or i.find('png') :
+                    absi=os.path.join(root,i)
+                    print(absi)
+                    os.remove(absi)
+
+        if len(dir)>0:
+            for i in dir:
+                absi=os.path.join(root,i)
+                if len(os.listdir(absi))==0:
+                    print(i)
+                    os.rmdir(absi)
+
+
+
+
+
+path=r'G:\PPT'
+# path=r'F:\temp\book-zlibrary'
+deleteParticularFile(path)
+
+# movefile(input,output)
+# movefile(output,topath)
+# emptyDir(input)
+# emptyDir(output)
+
+
+calibre=r'C:\Users\87754\AppData\Local\calibre-cache\ev2\f'
+# emptyDir(calibre)
+
+
+path = r'F:\PDF\newspaper\中国县域经济报\2022'
+# changeFileName2(path)
+
+
 path = r'F:\PDF\newspaper\中国县域经济报\2019'
-checkName(path)
+# checkName(path)
