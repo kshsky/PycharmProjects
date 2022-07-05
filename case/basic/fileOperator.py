@@ -41,8 +41,11 @@ def changeFileName(path):
     os.chdir(path)
     file = os.listdir(path)
     for i in file:
-        l=i.index('御赐')
-        new = i[l:]
+
+        l=i.index('(')
+        r=i.rindex('.')
+        # new = i.replace('一','1').replace('一','1').replace('二','2').replace('三','3').replace('四','4').replace('五','5').replace('六','6').replace('七','7').replace('八','8')
+        new = i[:l]+i[r:]
         os.rename(i,new)
 
 def changeFileName2(path):
@@ -54,22 +57,7 @@ def changeFileName2(path):
             # new = new.replace('-25-','-22-')
             print('>>>>>',i,new)
             os.rename(i, new)
-        # if i.find('16154') != -1:
-        #     new = i.replace('16154','1616')
-        #     print(i,new)
-        #     os.rename(i, new)
-        # if i.find('16132') != -1:
-        #     new = i.replace('16132','1613')
-        #     print(i,new)
-        #     os.rename(i, new)
-        if i.find('1453') != -1:
-            new = i.replace('1453','1503')
-            print(i,new)
-            os.rename(i, new)
-        if i.find('1454') != -1:
-            new = i.replace('1454','1504')
-            print(i,new)
-            os.rename(i, new)
+
         else:
             continue
         # os.rename(i,new)
@@ -97,27 +85,27 @@ def deleteParticularFile(path):
     import os
     os.chdir(path)
     for root,dir,file in os.walk(path):
-        if len(file)>0:
-            for i in file:
-                if i.find('jpg')!=-1 or i.find('JPG')!=-1 or i.find('png') :
-                    absi=os.path.join(root,i)
-                    print(absi)
-                    os.remove(absi)
 
-        if len(dir)>0:
-            for i in dir:
+        for i in file:
+            if i.find('mobi')!=-1 :
                 absi=os.path.join(root,i)
-                if len(os.listdir(absi))==0:
-                    print(i)
-                    os.rmdir(absi)
+                print(absi)
+                os.remove(absi)
+        #
+        # if len(dir)>0:
+        #     for i in dir:
+        #         absi=os.path.join(root,i)
+        #         if len(os.listdir(absi))==0:
+        #             print(i)
+        #             os.rmdir(absi)
 
 
 
 
 
-path=r'G:\PPT'
+path=r'H:\zlibrary\5000+epub+mobi+pdf'
 # path=r'F:\temp\book-zlibrary'
-deleteParticularFile(path)
+# deleteParticularFile(path)
 
 # movefile(input,output)
 # movefile(output,topath)
@@ -127,10 +115,11 @@ deleteParticularFile(path)
 
 calibre=r'C:\Users\87754\AppData\Local\calibre-cache\ev2\f'
 # emptyDir(calibre)
+#
 
-
-path = r'F:\PDF\newspaper\中国县域经济报\2022'
-# changeFileName2(path)
+# path = r'F:\BOOK_word\01-刑部\大型电视专题片《永远在路上》'
+path = r'D:\Program Files\jj-Download\《项目管理概论》2022春 全67p'
+changeFileName(path)
 
 
 path = r'F:\PDF\newspaper\中国县域经济报\2019'

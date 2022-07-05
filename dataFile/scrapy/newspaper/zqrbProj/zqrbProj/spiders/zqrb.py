@@ -6,13 +6,22 @@ import datetime
 class ZqrbSpider(scrapy.Spider):
     name = 'zqrb'
     allowed_domains = ['www.cc.com']
-    start_urls = ['http://epaper.zqrb.cn/html/2022-06/18/node_2.htm']
+    start_urls = []
     base_url='http://epaper.zqrb.cn/'
-    date=datetime.date(2022,6,19)
-    datestr=date.strftime('%Y-%m-%d')
-    # model_url ='http://epaper.zqrb.cn/html/{}/node_2.htm'.format('2022-06/18')
 
-    # start_urls.append(model_url)
+    year=2022
+    month=6
+    start = datetime.date(year,month,1)
+    end = datetime.date(year,month+1,1)
+    delta = datetime.timedelta(days=1)
+    d=start
+
+    while d<end:
+        datestr = d.strftime('%Y-%m/%d')
+        model_url = 'http://epaper.zqrb.cn/html/{}/node_2.htm'.format(datestr)
+        start_urls.append(model_url)
+        d += delta
+
     day_dict={}
     page_dict={}
     label_dict={}
@@ -40,7 +49,6 @@ class ZqrbSpider(scrapy.Spider):
             pagenum = i.xpath('.//table[@bgcolor="#ffffff"]/@id').get()
             details = i.xpath('.//table[@bgcolor="#ffffff"]/tr')
 
-            print('\n{}\n'.format(pagenum))
             page_content =''
             k = 1
             for j in details:
@@ -49,9 +57,12 @@ class ZqrbSpider(scrapy.Spider):
                 page_content +='({}){}<br>'.format(k,detail)
                 k+=1
                 print(detail)
+            #h3
             self.page_dict.update({pagenum:page_content})
-            self.day_dict.update({year+'-'+month:self.page_dict})
-            self.label_dict.update({year:self.day_dict})
+            #h2
+            self.day_dict.update({day:self.page_dict})
+            #h1
+            self.label_dict.update({year+'-'+month:self.day_dict})
 
         logging.info(self.label_dict)
 
@@ -68,7 +79,7 @@ class ZqrbSpider(scrapy.Spider):
             item = ZqrbprojItem()
             item['url'] = pageurl
             item['dirname'] = dirname
-            item['name'] = pagename+'.pdf'
+            item['name'] = year+'-'+month+'-'+day+'_'+pagename+'.pdf'
             print(item)
             yield item
 

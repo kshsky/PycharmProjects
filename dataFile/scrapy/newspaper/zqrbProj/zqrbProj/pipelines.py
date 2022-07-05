@@ -36,8 +36,9 @@ class ZqrbprojPipeline(FilesPipeline):
 
 #生成pdf的pipeline
 class createPDFPipeline:
+    item = None
     def process_item(self, item, spider):
-        # print('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+        self.item = item
         return item
 
     def close_spider(self,spider):
@@ -76,7 +77,8 @@ class createPDFPipeline:
         # 配置file_path
         settings = get_project_settings()
         file_path = settings.get('FILES_STORE')
-        file_abs_path =file_path+ '/'+year+'.pdf'
+        d = spider.start.strftime('%Y-%m')
+        file_abs_path =file_path+ '/'+d[:4]+'/'+d+'.pdf'
         # file_abs_path =file_path+ year+'/'+year+'.pdf'
         print('正在生成pdf文件 ---> ', file_abs_path)
         logging.info(all_content)

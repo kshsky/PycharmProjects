@@ -73,3 +73,22 @@ while d <= end:
 
 
 print(datetime.datetime.now())
+
+
+start = datetime.date(2000,1,1)
+
+end = datetime.date(2000,12,31)
+
+daydelta = datetime.timedelta(days=1)
+monthdelta = datetime.timedelta(month=1)
+
+now = start
+
+
+
+while now <= end:
+    now = now+monthdelta
+
+    nowstr = now.strftime('%Y-%m-%d')
+    print(nowstr[:7])
+
