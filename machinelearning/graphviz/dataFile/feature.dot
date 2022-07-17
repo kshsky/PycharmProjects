@@ -1,5 +1,5 @@
 digraph featureEvaluation {
-	node [fontname=SimSun shape=ellipse style=filled]
+	node [fontname="LXGW WenKai" shape=ellipse style=filled]
 	a [label="特征评价"]
 	b [label="特征初选"]
 	c [label="影响评价"]

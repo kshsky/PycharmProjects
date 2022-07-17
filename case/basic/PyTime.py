@@ -44,14 +44,10 @@ today = datetime.today()
 monthRange = calendar.monthrange(today.year,today.month)[1]
 print(today)
 
-import random
-
-print(random.randint(3,9))
-
 
 import datetime
 begin = datetime.date(2019,1,1)
-end = datetime.date(2020,6,6)
+end = datetime.date(2019,1,6)
 d = begin
 delta = datetime.timedelta(days=1)
 while d <= end:
@@ -61,7 +57,7 @@ while d <= end:
 
 print('-------------')
 start = datetime.date(2022,6,1)
-end = datetime.date(2022,7,2)
+end = datetime.date(2022,6,2)
 delta = datetime.timedelta(days=1)
 d = start
 while d <= end:
@@ -74,21 +70,6 @@ while d <= end:
 
 print(datetime.datetime.now())
 
+print(datetime.datetime.now().date())
 
-start = datetime.date(2000,1,1)
-
-end = datetime.date(2000,12,31)
-
-daydelta = datetime.timedelta(days=1)
-monthdelta = datetime.timedelta(month=1)
-
-now = start
-
-
-
-while now <= end:
-    now = now+monthdelta
-
-    nowstr = now.strftime('%Y-%m-%d')
-    print(nowstr[:7])
 

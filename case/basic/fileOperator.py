@@ -103,6 +103,7 @@ def deleteParticularFile(path):
 
 
 
+
 path=r'H:\zlibrary\5000+epub+mobi+pdf'
 # path=r'F:\temp\book-zlibrary'
 # deleteParticularFile(path)
@@ -114,12 +115,12 @@ path=r'H:\zlibrary\5000+epub+mobi+pdf'
 
 
 calibre=r'C:\Users\87754\AppData\Local\calibre-cache\ev2\f'
-# emptyDir(calibre)
+emptyDir(calibre)
 #
 
 # path = r'F:\BOOK_word\01-刑部\大型电视专题片《永远在路上》'
 path = r'D:\Program Files\jj-Download\《项目管理概论》2022春 全67p'
-changeFileName(path)
+# changeFileName(path)
 
 
 path = r'F:\PDF\newspaper\中国县域经济报\2019'
