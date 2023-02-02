@@ -2,13 +2,13 @@ import pandas as pd
 from sklearn import tree
 from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
-
+import datetime
 wine = load_wine()
 print(wine.feature_names)
 # print(wine.target)
 
-criterion="gini"
-# criterion="entropy"
+# criterion="gini"
+criterion="entropy"
 
 Xtrain, Xtest, Ytrain, Ytest = train_test_split(wine.data,wine.target,test_size=0.2,random_state=8)
 
@@ -28,16 +28,21 @@ sklearn.tree.export_graphviz(decision_tree, out_file=None, *, max_depth=None,
                     fontname='helvetica')[source]
 '''
 import graphviz
-
+name = datetime.datetime.now().date()
 dot_data = tree.export_graphviz(clf
                                 , out_file="dataFile/wineTree.dot"
                                 ,feature_names = wine.feature_names
+                                ,fontname='STZhongSong'
+                                ,rotate=True
                                 ,class_names=["琴酒","雪莉","贝尔摩德"]
                                 ,filled=True,rounded=True)
-graph_entropy = graphviz.Source(dot_data)
+
+# graphviz.Source(dot_data)
+
+# dot_data.render(name=str(name),view=True)
 
 #渲染dot文件
-from graphviz import Source
+# from graphviz import Source
 
 # source.from_file(path) 不能修改原来helvetica字体乱码问题
 # path = 'datafile/wineTree.dot'
@@ -48,5 +53,7 @@ from graphviz import Source
 
 with open('dataFile/wineTree.dot',encoding='utf-8') as f:
     dot_txt = f.read()
-fromDot = graphviz.Source(dot_txt.replace('helvetica','FangSong'),directory='datafile',filename='wineTree',format='png')
+fromDot = graphviz.Source(dot_txt.replace('helvetica','FangSong'),directory='datafile',filename='wineTree',format='pdf')
 fromDot.view()
+
+tree.plot_tree(entfit,)

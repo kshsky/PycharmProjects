@@ -3,9 +3,12 @@ import logging
 from ..items import ZqrbprojItem
 from bs4 import BeautifulSoup as bs
 import datetime
+'''
+证券日报
+'''
 class ZqrbSpider(scrapy.Spider):
     name = 'zqrb'
-    allowed_domains = ['www.cc.com']
+    allowed_domains = ['http://epaper.zqrb.cn/']
     start_urls = []
     base_url='http://epaper.zqrb.cn/'
 

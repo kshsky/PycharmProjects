@@ -2,11 +2,12 @@ from sklearn.datasets import load_boston
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-oridata = load_boston()
-data = oridata.data
-columns =oridata.feature_names
-print(oridata)
+from sklearn.datasets import fetch_california_housing
+# housing = fetch_boston_housing()
+housing = load_boston()
+data = housing.data
+columns =housing.feature_names
+print(housing)
 
 df = pd.DataFrame(data = data,columns=columns)
 '''
@@ -28,15 +29,3 @@ MEDV：自住房的平均房价，以千美元计。
 '''
 
 print(df)
-x=[]
-y=[]
-for i in np.arange(0.00001, 1, 0.0001):
-    x.append(i)
-    y.append(np.log2(1 / i))
-
-plt.plot(x, y)
-plt.axhline(0, linestyle='--', c='r')
-plt.axvline(1, linestyle='-.', c='g')
-plt.xlabel('probability',fontdict={'fontsize':'large'})
-plt.ylabel('$np.log_2(1/p)$')
-plt.show()

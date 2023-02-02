@@ -20,6 +20,7 @@ def movefile(input,output):
                 if i.find('mobi')!=-1:
                     shutil.move(root+'/'+i,output+'/'+i)
                 if i.find('pdf')!=-1:
+                    print('move file　：　－＞　',i)
                     shutil.move(root+'/'+i,output+'/'+i)
     print('\n\n move successfully ...')
 
@@ -98,10 +99,17 @@ def deleteParticularFile(path):
         #         if len(os.listdir(absi))==0:
         #             print(i)
         #             os.rmdir(absi)
+def renameFileName(path):
+    import os
+    os.chdir(path)
+    for i in os.listdir(path):
+        l = i.index('-')
+        r=i.index('.')
+        new = i[l+2:r]+' - '+i[:l-1]+i[r:]
+        os.rename(i,new)
 
-
-
-
+path=r'F:\BOOK_word\01-刑部\stylelife\step1\但丁'
+# renameFileName(path)
 
 
 path=r'H:\zlibrary\5000+epub+mobi+pdf'
@@ -125,3 +133,35 @@ path = r'D:\Program Files\jj-Download\《项目管理概论》2022春 全67p'
 
 path = r'F:\PDF\newspaper\中国县域经济报\2019'
 # checkName(path)
+
+############################################
+# input=r'F:\work\02'
+# output=r'F:\work\0922'
+# movefile(input,output)
+#
+# input=r'F:\work\01'
+# movefile(input,output)
+
+#
+p='EP'
+def renameFileNameFX(path):
+    import os
+    os.chdir(path)
+    for i in os.listdir(path):
+        if i.find(p)!=-1:
+            print('pass...')
+            continue;
+        if i.find('第')!=-1:
+            l = i.index('第')
+            r=i.rindex('集')
+            new = '凡人修仙传.EP'+i[l+1:r]+'.HD1080p.mp4'
+            print('{} -> {}'.format(i,new))
+            os.rename(i,new)
+        if i.find('x')!=-1:
+            l = i.index('EP')
+            # r=i.index('集')
+            new = '凡人修仙传'+i[l-1:]
+            print('{} -> {}'.format(i, new))
+            os.rename(i,new)
+path=r'E:\迅雷下载\凡人修仙传'
+# renameFileNameFX(path)

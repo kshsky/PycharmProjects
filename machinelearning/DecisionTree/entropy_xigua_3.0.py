@@ -49,6 +49,7 @@ def gainuv(u,v):
     print(tdict)
     return {'best split point':max(tdict,key=tdict.get),'maxEntropyGain':max(tdict.values())}
 
+
 columns=['色泽','根蒂','敲声','纹理','脐部','触感','密度','含糖率','好瓜']
 data=[['青绿','蜷缩','浊响','清晰','凹陷','硬滑',0.697,0.460,'是'],
     ['乌黑','蜷缩','沉闷','清晰','凹陷','硬滑',0.774,0.376,'是'],
@@ -90,3 +91,6 @@ def maxFeature(df,para):
             print('error para')
         featureDict[i]=featureValue
     return max(featureDict,key=featureDict.get)
+
+#-----------------------
+
